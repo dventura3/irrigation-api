@@ -29,7 +29,7 @@ app.listen(SERVER_PORT);
 /*--------------- HTTP Calls -------------------*/
 
 //all the sensors
-var getSensorsValues = function(req, res){
+var getSensors = function(req, res){
   console.log("Sensors");
   res.send({success:true});
 }
@@ -40,11 +40,15 @@ var getSensorValues = function(req, res){
   console.log("Sensor ID: " + sensorID);
   var newValue = Math.random();
 
+  /*
+  * Check if there is the corrispondent sensor => it depends from the type of sensor and its ID
+  */
+
   res.send({sensorID : sensorID, value : newValue});
 }
 
 //all the actuators
-var getActuatorsValues = function(req, res){
+var getActuators = function(req, res){
   console.log("Actuators");
   res.send({success:true});
 }
@@ -58,8 +62,8 @@ var getActuatorValues = function(req, res){
   res.send({actuatorID : actuatorID, value : newValue});
 }
 
-app.get("/sensors", getSensorsValues);
+app.get("/sensors", getSensors);
 app.get("/sensors/:sensorID", getSensorValues);
 
-app.get("/actuators", getActuatorsValues);
+app.get("/actuators", getActuators);
 app.get("/actuators/:actuatorID", getActuatorValues);

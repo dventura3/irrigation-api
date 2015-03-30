@@ -1,0 +1,22 @@
+@prefix ex: <http://example.org/>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix unit: <http://data.nasa.gov/qudt/owl/unit#>.
+
+{
+	?sensor a ex:TemperatureSensor.
+	?state a st:State;
+				log:includes { ?sensor ex:observes ?temp. }.
+}
+=>
+{
+	_:request http:methodName "GET";
+    				http:requestURI ("sensors/" ?sensor);
+						http:resp [ http:body ?temp ].
+
+	?temp a dbpedia:Temperature;
+				ex:hasValue ?tempValue;
+				ex:hasUnit unit:DegreeCelsius.
+}.

@@ -1,0 +1,20 @@
+@prefix ex: <http://example.org/>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+
+{
+	?sensor a ex:LightSensor.
+	?state a st:State;
+				log:includes { ?sensor ex:observes ?light. }.
+}
+=>
+{
+	_:request http:methodName "GET";
+    				http:requestURI ("sensors/" ?sensor);
+						http:resp [ http:body ?light ].
+
+	?light a dbpedia:Light;
+					ex:hasValue ?lightValue.
+}.
