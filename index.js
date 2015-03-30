@@ -57,7 +57,7 @@ var getSensors = function(req, res){
 }
 
 
-var getSensorValues = function(req, res){
+var getSensorValue = function(req, res){
   var sensorID = req.params.sensorID;
   for (var i=0; i < sensors.length; i++) {
     if(sensors[i].ID == sensorID){
@@ -69,14 +69,13 @@ var getSensorValues = function(req, res){
 }
 
 
-
 var getActuators = function(req, res){
   console.log("Actuators");
   res.send({success:true});
 }
 
 
-var getActuatorValues = function(req, res){
+var getActuatorState = function(req, res){
   var actuatorID = req.params.actuatorID;
   console.log("Actuator ID: " + actuatorID);
   var currentState = 1;
@@ -95,8 +94,8 @@ var changeActuatorState = function(req, res){
 
 
 app.get("/sensors", getSensors);
-app.get("/sensors/:sensorID", getSensorValues);
+app.get("/sensors/:sensorID", getSensorValue);
 
 app.get("/actuators", getActuators);
-app.get("/actuators/:actuatorID", getActuatorValues);
+app.get("/actuators/:actuatorID", getActuatorState);
 app.put("/actuators/:actuatorID/:value", changeActuatorState);
