@@ -1,0 +1,32 @@
+{
+	"sensors" : [
+		{
+			"ID" : "001",
+			"type" : "Temperature",
+			"description" : "Temperature Sensor",
+			"unit" : "celsius",
+			"pin" : 1
+		},
+		{
+			"ID" : "002",
+			"type" : "Moisture",
+			"description" : "Moisture Sensor",
+			"pin" : 2
+		},
+		{
+			"ID" : "003",
+			"type" : "Light",
+			"description" : "Light Sensor",
+			"pin" : 3
+		}
+	],
+	"actuators" : [
+		{
+			"ID" : "001",
+			"type" : "Pump",
+			"description" : "Pump for irrigation system",
+			"pin" : 4
+		}
+	],
+	"gps" : ""
+}
