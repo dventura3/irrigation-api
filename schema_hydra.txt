@@ -1,0 +1,252 @@
+/*************************  DOCUMENTATION  *************************/
+// END-POINT documentation: www.irrigation.com/api/1.0/
+
+{
+	"@context" : {
+		"iot": "http://www.iot-vocabolary.org/iot/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.personal-vocab.org/vocab#"
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "ApiDocumentation": "hydra:ApiDocumentation",
+    "property": {
+      "@id": "hydra:property",
+      "@type": "@id"
+    },
+    "readonly": "hydra:readonly",
+    "writeonly": "hydra:writeonly",
+    "supportedClass": "hydra:supportedClass",
+    "supportedProperty": "hydra:supportedProperty",
+    "supportedOperation": "hydra:supportedOperation",
+    "method": "hydra:method",
+    "expects": {
+      "@id": "hydra:expects",
+      "@type": "@id"
+    },
+    "returns": {
+      "@id": "hydra:returns",
+      "@type": "@id"
+    },
+    "statusCodes": "hydra:statusCodes",
+    "code": "hydra:statusCode",
+    "label": "rdfs:label",
+    "description": "rdfs:comment",
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
+    }
+	},
+	"@id" : "www.irrigation.com/api/1.0/",
+	"supportedClass": [
+		{
+			"@id" : "iot:Sensor",
+			"@type": "hydra:Class",
+			"subClassOf": null,
+      "label": "Sensor",
+      "description": "A generic sensor",
+      "supportedOperation": [
+        {
+        	"@id" : "_:sensor_data_retrieve",
+        	"@type" : "hydra:Operation",
+        	"method" : "GET",
+        	"label" : "Retrieves a Sensor entity",
+        	"description" : null,
+        	"expects" : null,
+        	"returns" : "iot:Sensor",
+        	"statusCode" : []
+        },
+        {
+        	//put
+        },
+        {
+        	//delete
+        }
+      ],
+      "supportedProperty" : [
+      	{
+      		"property": {
+              "@id": "iot:id",
+              "@type": "rdf:Property",
+              "label": "sensorID",
+              "description": "The sensor's ID",
+              "domain": "iot:Sensor",
+              "range": "http://www.w3.org/2001/XMLSchema#string",
+              "supportedOperation": []
+          },
+          "hydra:title": "sensorID",
+          "hydra:description": "The sensor's ID",
+          "required": null,
+          "readonly": true,
+          "writeonly": false
+      	},
+      	{
+      		//sensorValue
+      	},
+      	{
+      		//sensorUnit
+      	},
+      	{
+      		//sensorName
+      	},
+      	{
+      		//sensorDescription
+      	}
+      ]
+		},
+    {
+      "@id" : "vocab:EntryPoint",
+      "@type": "hydra:Class",
+      "subClassOf": null,
+      "label": "Entry Point",
+      "description": "API starts here",
+      "supportedOperation" : [
+        {
+          "@id" : "_:entry_point",
+          "@type" : "hydra:Operation",
+          "method" : "GET",
+          "label" : "Entry Point",
+          "description" : "Retrieves all the links to browser in the API",
+          "expects" : null,
+          "returns" : "vocab:EntryPoint",
+          "statusCode" : []
+        }
+      ],
+      "supportedProperty" : [
+        {
+          "property": {
+              "@id": "vocab:SensorsEntryPoint",
+              "@type": "hydra:Link",
+              "label": "sensors",
+              "description": "The sensors collection",
+              "domain": "vocab:EntryPoint",
+              "range": "hydra:Collection",
+              "supportedOperation": [
+                {
+                  "@id" : "_:entry_point_get_sensors",
+                  "@type" : "hydra:Operation",
+                  "method" : "GET",
+                  "label" : "Retrieves all the sensors",
+                  "description" : "Retrieves all the sensors connected to the platform",
+                  "expects" : null,
+                  "returns" : "hydra:Collection",
+                  "statusCode" : []
+                },
+                {
+                  "@id" : "_:entry_point_post_sensor",
+                  "@type" : "hydra:CreateResourceOperation",
+                  "method" : "POST",
+                  "label" : "Creates a new sensor entity",
+                  "description" : "Creates a new sensor entity to the collection",
+                  "expects" : "iot:Sensor",
+                  "returns" : "iot:Sensor",
+                  "statusCode" : [
+                    {
+                      "code": 201,
+                      "description": "If the Sensor entity was created successfully."
+                    }
+                  ]
+                }
+              ]
+          },
+          "hydra:title": "sensors",
+          "hydra:description": "The sensors collection",
+          "required": null,
+          "readonly": true,
+          "writeonly": false
+        },
+        {
+          //actuators
+        },
+        {
+          //geolocation
+        }
+      ]
+    }
+	]
+}
+
+
+
+/*******************  RESPONSES FOR HTTP REQUESTS  *******************/
+
+// GET www.irrigation.com/
+
+{
+  "@context" : {
+    "iot" : "http://www.iot-vocabolary.org/iot/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.personal-vocab.org/vocab#",
+    "sensors" : {
+      "@id" : "vocab:SensorsEntryPoint"
+      "@type" : "@id"
+    },
+    "actuators" : {
+      "@id" : "vocab:ActuatorsEntryPoint"
+      "@type" : "@id"
+    },
+    "geolocation" : {
+      "@id" : "vocab:GeoEntryPoint"
+      "@type" : "@id"
+    }
+  },
+  "@id" : "/",
+  "@type" : "vocab:EntryPoint",
+  "sensors" : "/sensors/",
+  "actuators" : "/actuators/",
+  "geolocation" : "/geo/"
+}
+
+
+
+// GET www.irrigation.com/sensors/
+
+{
+  "@context" : {
+    "iot" : "http://www.iot-vocabolary.org/iot/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "Collection" : "hydra:Collection",
+    "members" : "hydra:member"
+  },
+  "@id" : "/sensors/",
+  "@type" : "Collection",
+  "members" : [
+    {
+      "@id" : "/sensors/01",
+      "@type" : "iot:Sensor"
+    },
+    {
+      "@id" : "/sensors/02",
+      "@type" : "iot:Sensor"
+    }
+  ]
+}
+
+
+
+// GET www.irrigation.com/sensors/01/
+
+{
+	"@context" : {
+		"iot" : "http://www.iot-vocabolary.org/iot/",
+		"sensorID" : "iot:id",
+		"sensorValue" : "iot:value",
+		"sensorUnit" : "iot:unit",
+		"sensorName" : "iot:name",
+		"sensorDescription" : "iot:description"
+	},
+	"@id" : "/sensors/01/",
+	"@type" : "iot:Sensor",  	=> NB: It's a classe whose HTTP methods are defined in the documentation
+	"sensorID" : "01",
+	"sensorValue" : "25",
+	"sensorUnit" : "Celsius",
+	"sensorName" : "Temperature Sensor",
+	"sensorDescription" : "This sensor measures the temperature in the environment"
+}
