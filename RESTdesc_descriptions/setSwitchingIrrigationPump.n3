@@ -16,7 +16,7 @@
 =>
 {
 	_:request http:methodName "PUT";
-            http:requestURI ("actuators/" ?pump "/" ?newValue).
+            http:requestURI ("actuators/pump/" ?pump "/" ?newValue).
 
   [ a st:StateTransition;
   	st:typeOperation "replacement";

@@ -13,7 +13,7 @@
 =>
 {
 	_:request http:methodName "GET";
-    				http:requestURI ("sensors/" ?sensor);
+    				http:requestURI ("sensors/temperature/" ?sensor);
 						http:resp [ http:body ?temp ].
 
 	?temp a dbpedia:Temperature;
