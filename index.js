@@ -55,10 +55,10 @@ app.listen(port, host, function() {
 
 var getEntryPoint = function(req, res){
   try {
-  fs.readFile('examples/get_entryPoint.json', function(err, data){
-    if (err) throw err;
-    res.send(data);
-  });
+    fs.readFile('examples/get_entryPoint.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
   } catch (e) {
     console.log("Error in reading file");
     res.send({success:false});
@@ -69,10 +69,10 @@ var getEntryPoint = function(req, res){
 
 var getPlants = function(req, res){
   try {
-  fs.readFile('examples/get_plants_list.json', function(err, data){
-    if (err) throw err;
-    res.send(data);
-  });
+    fs.readFile('examples/get_plants_list.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
   } catch (e) {
     console.log("Error in reading file");
     res.send({success:false});
@@ -81,10 +81,10 @@ var getPlants = function(req, res){
 
 var getPlantInfo = function(req, res){
   try {
-  fs.readFile('examples/get_plant_info.json', function(err, data){
-    if (err) throw err;
-    res.send(data);
-  });
+    fs.readFile('examples/get_plant_info.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
   } catch (e) {
     console.log("Error in reading file");
     res.send({success:false});
@@ -94,16 +94,42 @@ var getPlantInfo = function(req, res){
 /**** SENSORS ***/
 
 var getSensors = function(req, res){
-  res.send({success:true});
+  try {
+    fs.readFile('examples/get_sensors.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
 }
 
 var getSensorsForType = function(req, res){
-  res.send({success:false});
+  try {
+    //Currently - We suppose the "sensorType" = "temperature"
+    fs.readFile('examples/get_sensors_temperature.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
 }
 
 var getSensorValue = function(req, res){
   var sensorID = req.params.sensorID;
-  res.send({success:false});
+  try {
+    //Currently - We suppose the "sensorType" = "temperature" & "sensorID" = "001"
+    fs.readFile('examples/get_temperature_value.json', function(err, data){
+      if (err) throw err;
+      res.send(data);
+    });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
 }
 
 /**** ACTUATORS ***/

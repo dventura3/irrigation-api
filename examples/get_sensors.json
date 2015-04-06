@@ -1,0 +1,24 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.example.org/vocab#",
+    "Collection": "hydra:Collection",
+    "members": "hydra:member"
+  },
+  "@type": "Collection",
+  "@id": "/sensors/",
+  "members": [
+    {
+      "@id": "/sensors/temperature/",
+      "@type": "hydra:Link"
+    },
+    {
+      "@id": "/sensors/moisture/",
+      "@type": "hydra:Link"
+    },
+    {
+      "@id": "/sensors/light/",
+      "@type": "hydra:Link"
+    }
+  ]
+}
