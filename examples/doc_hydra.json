@@ -12,8 +12,8 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "ApiDocumentation": "hydra:ApiDocumentation",
     "property": {
-    "@id": "hydra:property",
-    "@type": "@id"
+      "@id": "hydra:property",
+      "@type": "@id"
     },
     "readonly": "hydra:readonly",
     "writeonly": "hydra:writeonly",
@@ -22,28 +22,28 @@
     "supportedOperation": "hydra:supportedOperation",
     "method": "hydra:method",
     "expects": {
-    "@id": "hydra:expects",
-    "@type": "@id"
+      "@id": "hydra:expects",
+      "@type": "@id"
     },
     "returns": {
-    "@id": "hydra:returns",
-    "@type": "@id"
+      "@id": "hydra:returns",
+      "@type": "@id"
     },
     "statusCodes": "hydra:statusCodes",
     "code": "hydra:statusCode",
     "label": "rdfs:label",
     "description": "rdfs:comment",
     "domain": {
-    "@id": "rdfs:domain",
-    "@type": "@id"
+      "@id": "rdfs:domain",
+      "@type": "@id"
     },
     "range": {
-    "@id": "rdfs:range",
-    "@type": "@id"
+      "@id": "rdfs:range",
+      "@type": "@id"
     },
     "subClassOf": {
-    "@id": "rdfs:subClassOf",
-    "@type": "@id"
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
     }
   },
   "@id" : "www.irrigation.com/api/1.0/",
@@ -90,16 +90,70 @@
           "writeonly": false
         },
         {
-          //sensorValue
+          //TODO sensorValue
         },
         {
-          //sensorUnit
+          //TODO sensorUnit
         },
         {
-          //sensorName
+          //TODO sensorName
         },
         {
-          //sensorDescription
+          //TODO sensorDescription
+        }
+      ]
+    },
+    {
+      "@id" : "vocab:EntryPoint",
+      "@type": "hydra:Class",
+      "subClassOf": null,
+      "label": "Entry Point",
+      "description": "API starts here",
+      "supportedOperation" : [
+        {
+          "@id" : "_:entry_point",
+          "@type" : "hydra:Operation",
+          "method" : "GET",
+          "label" : "Entry Point",
+          "description" : "Retrieves all the links to browser in the API",
+          "expects" : null,
+          "returns" : "vocab:EntryPoint",
+          "statusCode" : []
+        }
+      ],
+      "supportedProperty" : [
+        {
+          "property": {
+              "@id": "vocab:EntryPoint_sensors",
+              "@type": "hydra:Link",
+              "label": "sensors",
+              "description": "The sensors collection",
+              "domain": "vocab:EntryPoint",
+              "range": "hydra:Collection",
+              "supportedOperation": [
+                {
+                  "@id" : "_:entry_point_get_sensors",
+                  "@type" : "hydra:Operation",
+                  "method" : "GET",
+                  "label" : "Retrieves all the sensors TYPES",
+                  "description" : "Retrieves all the sensors TYPES connected to the platform",
+                  "expects" : null,
+                  "returns" : "hydra:Collection",
+                  "statusCode" : []
+                }
+              ]
+          },
+          "hydra:title": "sensors",
+          "hydra:description":  null,
+          "required": null,
+          "readonly": true,
+          "writeonly": false
+        },
+        {
+          //TODO actuators
+        },
+        {
+          //TODO geolocation
         }
       ]
     }
