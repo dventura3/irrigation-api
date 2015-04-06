@@ -1,14 +1,3 @@
-/*
-*   Example of a GET request to "http://www.irrigation.org/api/sensors/temperature/001/" URL.
-*   I've tried to use the iotdb.org vocabulary to express the concepts related to the properties that
-*   a temeprature sensors could have.
-*   Usefull links to iotdb.org vocabulary:
-*   1) https://iotdb.org/social/iotdb/
-*   2) https://iotdb.org/dpjanes/models/smart-things-temperature
-*   3) https://iotdb.org/pub/
-*   4) https://medium.com/@dpjanes/a-language-for-sensors-layer-1-242a8dd4e77b
-*/
-
 {
   "@context" : {
     "iot" : "https://iotdb.org/pub/iot#",

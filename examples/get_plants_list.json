@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.example.org/vocab#",
+    "Collection": "hydra:Collection",
+    "members": "hydra:member"
+  },
+  "@type": "Collection",
+  "@id": "/plants/",
+  "members": [
+    {
+      "@id": "/plants/001/",
+      "@type": "vocab:Plant"
+    },
+    {
+      "@id": "/plants/002/",
+      "@type": "vocab:Plant"
+    }
+  ]
+}

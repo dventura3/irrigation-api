@@ -1,0 +1,60 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.example.org/vocab#",
+    "schema" : "http://www.schema.org#",
+    "name" : "schema:name",
+    "description" : "schema:description",
+    "optimal_Temperature" : "????????",
+    "optimal_Moisture" : "????????",
+    "optimal_Light" : "????????",
+    "morning" : "????????",
+    "afternoon" : "????????",
+    "night" : "????????",
+    "temperature" : {
+      "@id" : "vocab:TemperatureSensor",
+      "@type" : "@id"
+    },
+    "moisture" : {
+      "@id" : "vocab:MoistureSensor",
+      "@type" : "@id"
+    },
+    "light" : {
+      "@id" : "vocab:LightSensor",
+      "@type" : "@id"
+    },
+    "pump" : {
+      "@id" : "vocab:PumpActuator",
+      "@type" : "@id"
+    },
+    "associated_sensors" : "????????",
+    "associated_actuators" : "????????"
+  },
+  "@type": "vocab:Plant",
+  "@id": "/plants/001",
+  "name" : "Rose",
+  "description" : "something",
+  "optimal_Moisture" : {
+    "morning" : 20,
+    "afternoon" : 40,
+    "night" : 10
+  },
+  "optimal_Temperature" : {
+    "morning" : 18,
+    "afternoon" : 20,
+    "night" : 15
+  },
+  "optimal_Light" : {
+    "morning" : 10,
+    "afternoon" : 10,
+    "night" : 10
+  },
+  "associated_sensors" : {
+    "temperature" : "/sensors/temperatue/001",
+    "moisture" : "/sensors/moisture/002",
+    "light" : "/sensors/light/003"
+  },
+  "associated_actuators" : {
+    "pump" : "/actuators/pump/001"
+  }
+}

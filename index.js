@@ -1,7 +1,7 @@
 var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
-var sensor_module = require('./modules/Sensor');
+//var sensor_module = require('./modules/Sensors_classes');
 
 var sensors = [];
 var actuators = [];
@@ -27,6 +27,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.listen(port, host, function() {
+  /*
   //configuration
   try {
     fs.readFile('fakeResources.json', function(err, data){
@@ -34,8 +35,7 @@ app.listen(port, host, function() {
       
       config = JSON.parse(data);
       for(var i = 0; i < config.sensors.length; i++){
-        var tmp = new sensor_module.Sensor();
-        tmp.initialize(config.sensors[i]);
+        var tmp = new sensor_module.Sensor(config.sensors[i]);
         sensors.push(tmp);
       }
 
@@ -45,44 +45,88 @@ app.listen(port, host, function() {
   } catch (e) {
     console.log("Error in reading file for configuration");
   }
+  */
 });
 
 
 /*--------------- HTTP Calls -------------------*/
 
+/**** ENTRYPOINT ***/
+
+var getEntryPoint = function(req, res){
+  try {
+  fs.readFile('examples/get_entryPoint.json', function(err, data){
+    if (err) throw err;
+    res.send(data);
+  });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
+}
+
+/**** PLANTS ***/
+
+var getPlants = function(req, res){
+  try {
+  fs.readFile('examples/get_plants_list.json', function(err, data){
+    if (err) throw err;
+    res.send(data);
+  });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
+}
+
+var getPlantInfo = function(req, res){
+  try {
+  fs.readFile('examples/get_plant_info.json', function(err, data){
+    if (err) throw err;
+    res.send(data);
+  });
+  } catch (e) {
+    console.log("Error in reading file");
+    res.send({success:false});
+  }
+}
+
+/**** SENSORS ***/
 
 var getSensors = function(req, res){
-  //TODO: Return a collection wit ID, Type, link per andare avanti a richiedere il dato
-  res.send({success:true, sensors:sensors});
-}
-
-
-var getSensorValue = function(req, res){
-  var sensorID = req.params.sensorID;
-  for (var i=0; i < sensors.length; i++) {
-    if(sensors[i].ID == sensorID){
-      res.send({success:true, sensorID:sensors[i].ID, value:sensors[i].read()});
-      return;
-    }
-  }
-  res.send({success:false});
-}
-
-
-var getActuators = function(req, res){
-  console.log("Actuators");
   res.send({success:true});
 }
 
-
-var getActuatorState = function(req, res){
-  var actuatorID = req.params.actuatorID;
-  console.log("Actuator ID: " + actuatorID);
-  var currentState = 1;
-
-  res.send({actuatorID : actuatorID, state : currentState});
+var getSensorsForType = function(req, res){
+  res.send({success:false});
 }
 
+var getSensorValue = function(req, res){
+  var sensorID = req.params.sensorID;
+  res.send({success:false});
+}
+
+/**** ACTUATORS ***/
+
+var getActuators = function(req, res){
+  console.log("getActuators");
+  res.send({success:true});
+}
+
+var getActuatorsForType = function(req, res){
+  console.log("getActuatorsForType");
+  res.send({success:true});
+}
+
+var getActuatorState = function(req, res){
+  console.log("getActuatorState");
+  res.send({success:true});
+}
+
+var changeActuatorState = function(req, res){
+  console.log("changeActuatorState");
+  res.send({success:true});
+}
 
 //change current state for the specific actuatorID
 var changeActuatorState = function(req, res){
@@ -92,10 +136,26 @@ var changeActuatorState = function(req, res){
   res.send({success:true});
 }
 
+/**** GEOLOCATION ***/
+
+var getGeocoordinates = function(req, res){
+  es.send({success:true});
+}
+
+
+
+app.get("/", getEntryPoint);
+
+app.get("/plants", getPlants);
+app.get("/plants/:plantID", getPlantInfo);
 
 app.get("/sensors", getSensors);
-app.get("/sensors/:sensorID", getSensorValue);
+app.get("/sensors/:sensorsType", getSensorsForType);
+app.get("/sensors/:sensorsType/:sensorID", getSensorValue);
 
 app.get("/actuators", getActuators);
-app.get("/actuators/:actuatorID", getActuatorState);
-app.put("/actuators/:actuatorID/:value", changeActuatorState);
+app.get("/actuators/:actuatorsType", getActuatorsForType);
+app.get("/actuators/:actuatorsType/:actuatorID", getActuatorState);
+app.put("/actuators/:actuatorsType/:actuatorID/:value", changeActuatorState);
+
+app.get("/geo", getGeocoordinates);
