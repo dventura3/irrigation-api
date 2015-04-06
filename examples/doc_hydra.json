@@ -1,0 +1,107 @@
+/*************************  DOCUMENTATION  *************************/
+// END-POINT documentation: www.irrigation.com/api/1.0/
+
+{
+  "@context" : {
+    "iot" : "https://iotdb.org/pub/iot#",
+    "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
+    "iot-unit" : "https://iotdb.org/pub/iot-unit#",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab" : "http://www.example.org/vocab#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "ApiDocumentation": "hydra:ApiDocumentation",
+    "property": {
+    "@id": "hydra:property",
+    "@type": "@id"
+    },
+    "readonly": "hydra:readonly",
+    "writeonly": "hydra:writeonly",
+    "supportedClass": "hydra:supportedClass",
+    "supportedProperty": "hydra:supportedProperty",
+    "supportedOperation": "hydra:supportedOperation",
+    "method": "hydra:method",
+    "expects": {
+    "@id": "hydra:expects",
+    "@type": "@id"
+    },
+    "returns": {
+    "@id": "hydra:returns",
+    "@type": "@id"
+    },
+    "statusCodes": "hydra:statusCodes",
+    "code": "hydra:statusCode",
+    "label": "rdfs:label",
+    "description": "rdfs:comment",
+    "domain": {
+    "@id": "rdfs:domain",
+    "@type": "@id"
+    },
+    "range": {
+    "@id": "rdfs:range",
+    "@type": "@id"
+    },
+    "subClassOf": {
+    "@id": "rdfs:subClassOf",
+    "@type": "@id"
+    }
+  },
+  "@id" : "www.irrigation.com/api/1.0/",
+  "supportedClass": [
+    {
+      "@id" : "vocab:TemperatureSensor",
+      "@type": "hydra:Class",
+      "subClassOf": null,
+      "label": "Temperature Sensor",
+      "description": "A generic temperetaure sensor",
+      "supportedOperation": [
+        {
+          "@id" : "_:sensor_data_retrieve",
+          "@type" : "hydra:Operation",
+          "method" : "GET",
+          "label" : "Retrieves a Temperature Sensor entity",
+          "description" : null,
+          "expects" : null,
+          "returns" : "vocab:TemperatureSensor",
+          "statusCode" : []
+        },
+        {
+          //TODO put
+        },
+        {
+          //TODO delete
+        }
+      ],
+      "supportedProperty" : [
+        {
+          "property": {
+            "@id": "iot:uuid",
+            "@type": "rdf:Property",
+            "label": "sensorID",
+            "description": "The sensor's ID",
+            "domain": "vocab:TemperatureSensor",
+            "range": "http://www.w3.org/2001/XMLSchema#string",
+            "supportedOperation": []
+          },
+          "hydra:title": "sensorID",
+          "hydra:description": "The sensor's ID",
+          "required": null,
+          "readonly": true,
+          "writeonly": false
+        },
+        {
+          //sensorValue
+        },
+        {
+          //sensorUnit
+        },
+        {
+          //sensorName
+        },
+        {
+          //sensorDescription
+        }
+      ]
+    }
+  ]
+}

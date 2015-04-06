@@ -1,5 +1,5 @@
 /*
-*   Example of a GET request to "http://www.irrigation.org/api/sensors/01/" URL.
+*   Example of a GET request to "http://www.irrigation.org/api/sensors/temperature/001/" URL.
 *   I've tried to use the iotdb.org vocabulary to express the concepts related to the properties that
 *   a temeprature sensors could have.
 *   Usefull links to iotdb.org vocabulary:
@@ -25,9 +25,9 @@
     "sensorUnit" : "iot:unit",
     "timestamp" : "iot:datetime"
   },
-  "@id" : "/sensors/01/",
-  "@type" : "vocab:Sensor",
-  "sensorID" : "01",
+  "@id" : "/sensors/temperature/001/",
+  "@type" : "vocab:TemperatureSensor",
+  "sensorID" : "001",
   "sensorName" : "Sensor of Temperature",
   "sensorDescription" : "This sensor measures the temperature in the environment",
   "sensorValue" : 25,
