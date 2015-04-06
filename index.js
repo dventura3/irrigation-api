@@ -55,7 +55,7 @@ app.listen(port, host, function() {
 
 var getEntryPoint = function(req, res){
   try {
-    fs.readFile('examples/get_entryPoint.json', function(err, data){
+    fs.readFile('examples/get_entryPoint.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
@@ -69,7 +69,7 @@ var getEntryPoint = function(req, res){
 
 var getPlants = function(req, res){
   try {
-    fs.readFile('examples/get_plants_list.json', function(err, data){
+    fs.readFile('examples/get_plants_list.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
@@ -81,7 +81,7 @@ var getPlants = function(req, res){
 
 var getPlantInfo = function(req, res){
   try {
-    fs.readFile('examples/get_plant_info.json', function(err, data){
+    fs.readFile('examples/get_plant_info.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
@@ -95,7 +95,7 @@ var getPlantInfo = function(req, res){
 
 var getSensors = function(req, res){
   try {
-    fs.readFile('examples/get_sensors.json', function(err, data){
+    fs.readFile('examples/get_sensors.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
@@ -108,7 +108,7 @@ var getSensors = function(req, res){
 var getSensorsForType = function(req, res){
   try {
     //Currently - We suppose the "sensorType" = "temperature"
-    fs.readFile('examples/get_sensors_temperature.json', function(err, data){
+    fs.readFile('examples/get_sensors_temperature.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
@@ -122,7 +122,7 @@ var getSensorValue = function(req, res){
   var sensorID = req.params.sensorID;
   try {
     //Currently - We suppose the "sensorType" = "temperature" & "sensorID" = "001"
-    fs.readFile('examples/get_temperature_value.json', function(err, data){
+    fs.readFile('examples/get_temperature_value.jsonld', function(err, data){
       if (err) throw err;
       res.send(data);
     });
