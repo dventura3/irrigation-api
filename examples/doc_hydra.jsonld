@@ -56,7 +56,7 @@
       "description": "A generic temperetaure sensor",
       "supportedOperation": [
         {
-          "@id" : "_:sensor_data_retrieve",
+          "@id" : "_:sensor_temp_retrieve",
           "@type" : "hydra:Operation",
           "method" : "GET",
           "label" : "Retrieves a Temperature Sensor entity",
@@ -66,10 +66,24 @@
           "statusCode" : []
         },
         {
-          //TODO put
+          "@id" : "_:sensor_temp_update",
+          "@type" : "hydra:Operation",
+          "method" : "PUT",
+          "label" : "Update a Temperature Sensor entity",
+          "description" : "Permit to update a Temperature Sensor entity",
+          "expects" : "vocab:TemperatureSensor",
+          "returns" : "vocab:TemperatureSensor",
+          "statusCode" : []
         },
         {
-          //TODO delete
+          "@id" : "_:sensor_temp_delete",
+          "@type" : "hydra:Operation",
+          "method" : "DELETE",
+          "label" : "Delete a Temperature Sensor entity",
+          "description" : "Permit to delete a Temperature Sensor entity",
+          "expects" : "null",
+          "returns" : "vocab:TemperatureSensor",
+          "statusCode" : []
         }
       ],
       "supportedProperty" : [

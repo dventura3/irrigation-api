@@ -177,19 +177,25 @@ var getGeocoordinates = function(req, res){
 
 app.get("/", getEntryPoint);
 
-app.get("/plants", getPlants);
-app.post("/plants", todo);
-app.get("/plants/:plantID", getPlantInfo);
-
 app.get("/sensors", getSensors);
 app.get("/sensors/:sensorsType", getSensorsForType);
 app.post("/sensors/:sensorsType", todo);
 app.get("/sensors/:sensorsType/:sensorID", getSensorValue);
+app.put("/sensors/:sensorsType/:sensorID", todo);
+app.delete("/sensors/:sensorsType/:sensorID", todo);
 
 app.get("/actuators", getActuators);
 app.get("/actuators/:actuatorsType", getActuatorsForType);
 app.post("/actuators/:actuatorsType", todo);
 app.get("/actuators/:actuatorsType/:actuatorID", getActuatorState);
 app.put("/actuators/:actuatorsType/:actuatorID/:value", changeActuatorState);
+app.delete("/actuators/:actuatorsType/:actuatorID/:value", todo);
+
+app.get("/plants", getPlants);
+app.post("/plants", todo);
+app.get("/plants/:plantID", getPlantInfo);
+app.put("/plants/:plantID", todo);
+app.delete("/plants/:plantID", todo);
 
 app.get("/geo", getGeocoordinates);
+
