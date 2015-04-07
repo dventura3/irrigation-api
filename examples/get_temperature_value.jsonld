@@ -8,7 +8,7 @@
     "sensorName" : "iot:name",
     "sensorDescription" : "iot:description",
     "sensorValue" : { 
-      "@id" : "iot-attribute:sensor.temperature",
+      "@id" : "iot-attribute:temperature",
       "@type" : "iot:number"
     },
     "sensorUnit" : "iot:unit",
