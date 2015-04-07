@@ -51,6 +51,11 @@ app.listen(port, host, function() {
 
 /*--------------- HTTP Calls -------------------*/
 
+var todo = function(req, res){
+  res.send({success:true});
+}
+
+
 /**** ENTRYPOINT ***/
 
 var getEntryPoint = function(req, res){
@@ -173,14 +178,17 @@ var getGeocoordinates = function(req, res){
 app.get("/", getEntryPoint);
 
 app.get("/plants", getPlants);
+app.post("/plants", todo);
 app.get("/plants/:plantID", getPlantInfo);
 
 app.get("/sensors", getSensors);
 app.get("/sensors/:sensorsType", getSensorsForType);
+app.post("/sensors/:sensorsType", todo);
 app.get("/sensors/:sensorsType/:sensorID", getSensorValue);
 
 app.get("/actuators", getActuators);
 app.get("/actuators/:actuatorsType", getActuatorsForType);
+app.post("/actuators/:actuatorsType", todo);
 app.get("/actuators/:actuatorsType/:actuatorID", getActuatorState);
 app.put("/actuators/:actuatorsType/:actuatorID/:value", changeActuatorState);
 
