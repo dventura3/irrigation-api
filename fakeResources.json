@@ -1,32 +1,32 @@
 {
-	"sensors" : [
-		{
-			"type" : "TemperatureSensor",
-			"sensorID" : "001",
-		  "sensorName" : "Sensor of Temperature",
-		  "sensorDescription" : "This sensor measures the temperature in the environment",
-		  "sensorUnit" : "iot-unit:temperature.si.celsius"
-		},
-		{
-			"type" : "MoistureSensor",
-			"sensorID" : "002",
-		  "sensorName" : "Soil Moisture Sensor",
-		  "sensorDescription" : "This sensor measures the moisture/humidity in the soil"
-		},
-		{
-			"type" : "LightSensor",
-			"sensorID" : "003",
-		  "sensorName" : "Light Sensor",
-		  "sensorDescription" : "This sensor measures the quantity of light in the environment"
-		}
-	],
-	"actuators" : [
-		{
-			"type" : "Pump",
-			"actuatorID" : "001",
-		  "actuatorName" : "Pump",
-		  "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
-		  "state" : 1
-		}
-	]
+  "sensors" : [
+    {
+      "type" : "TemperatureSensor",
+      "sensorID" : "001",
+      "sensorName" : "Sensor of Temperature",
+      "sensorDescription" : "This sensor measures the temperature in the environment",
+      "sensorUnit" : "iot-unit:temperature.si.celsius"
+    },
+    {
+      "type" : "MoistureSensor",
+      "sensorID" : "002",
+      "sensorName" : "Soil Moisture Sensor",
+      "sensorDescription" : "This sensor measures the moisture/humidity in the soil"
+    },
+    {
+      "type" : "LightSensor",
+      "sensorID" : "003",
+      "sensorName" : "Light Sensor",
+      "sensorDescription" : "This sensor measures the quantity of light in the environment"
+    }
+  ],
+  "actuators" : [
+    {
+      "type" : "Pump",
+      "actuatorID" : "001",
+      "actuatorName" : "Pump",
+      "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
+      "state" : 1
+    }
+  ]
 }
