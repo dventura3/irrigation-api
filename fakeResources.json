@@ -1,32 +1,32 @@
 {
 	"sensors" : [
 		{
-			"ID" : "001",
-			"type" : "Temperature",
-			"description" : "Temperature Sensor",
-			"unit" : "celsius",
-			"pin" : 1
+			"type" : "TemperatureSensor",
+			"sensorID" : "001",
+		  "sensorName" : "Sensor of Temperature",
+		  "sensorDescription" : "This sensor measures the temperature in the environment",
+		  "sensorUnit" : "iot-unit:temperature.si.celsius"
 		},
 		{
-			"ID" : "002",
-			"type" : "Moisture",
-			"description" : "Moisture Sensor",
-			"pin" : 2
+			"type" : "MoistureSensor",
+			"sensorID" : "002",
+		  "sensorName" : "Soil Moisture Sensor",
+		  "sensorDescription" : "This sensor measures the moisture/humidity in the soil"
 		},
 		{
-			"ID" : "003",
-			"type" : "Light",
-			"description" : "Light Sensor",
-			"pin" : 3
+			"type" : "LightSensor",
+			"sensorID" : "003",
+		  "sensorName" : "Light Sensor",
+		  "sensorDescription" : "This sensor measures the quantity of light in the environment"
 		}
 	],
 	"actuators" : [
 		{
-			"ID" : "001",
 			"type" : "Pump",
-			"description" : "Pump for irrigation system",
-			"pin" : 4
+			"actuatorID" : "001",
+		  "actuatorName" : "Pump",
+		  "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
+		  "state" : 1
 		}
-	],
-	"gps" : ""
+	]
 }

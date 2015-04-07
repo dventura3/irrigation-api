@@ -11,22 +11,6 @@
     "morning" : "????????",
     "afternoon" : "????????",
     "night" : "????????",
-    "temperature" : {
-      "@id" : "vocab:TemperatureSensor",
-      "@type" : "@id"
-    },
-    "moisture" : {
-      "@id" : "vocab:MoistureSensor",
-      "@type" : "@id"
-    },
-    "light" : {
-      "@id" : "vocab:LightSensor",
-      "@type" : "@id"
-    },
-    "pump" : {
-      "@id" : "vocab:PumpActuator",
-      "@type" : "@id"
-    },
     "associated_sensors" : "????????",
     "associated_actuators" : "????????"
   },
@@ -49,12 +33,12 @@
     "afternoon" : 10,
     "night" : 10
   },
-  "associated_sensors" : {
-    "temperature" : "/sensors/temperatue/001",
-    "moisture" : "/sensors/moisture/002",
-    "light" : "/sensors/light/003"
-  },
-  "associated_actuators" : {
-    "pump" : "/actuators/pump/001"
-  }
+  "associated_sensors" : [
+    "/sensors/temperatue/001",
+    "/sensors/moisture/002",
+    "/sensors/light/003"
+  ],
+  "associated_actuators" : [
+    "/actuators/pump/001"
+  ]
 }

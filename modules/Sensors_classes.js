@@ -1,11 +1,11 @@
 (function(){
 
-	function Sensor(sensor){
-		this.ID = sensor.ID;
-		this.type = sensor.type;
-		this.description = sensor.description;
-		this.pin = sensor.pin;
-		//timestamp? e sensorValue?
+	/******************** Sensor Class ********************/
+
+	function Sensor(sensorID, sensorName, sensorDescription){
+		this.ID = sensorID;
+		this.type = sensorName;
+		this.description = sensorDescription;
 	};
 
 	Sensor.prototype.read = function(){
@@ -15,13 +15,13 @@
 
 	exports.Sensor = Sensor;
 
+	/******************** Temperature Sensor Class ********************/
 
-	function TemperatureSensor(sensor){
-		this.ID = sensor.ID;
-		this.type = sensor.type;
-		this.description = sensor.description;
-		this.pin = sensor.pin;
-		this.unit = "celsius";
+	function TemperatureSensor(sensorID, sensorName, sensorDescription, sensorUnit){
+		this.ID = sensorID;
+		this.type = sensorName;
+		this.description = sensorDescription;
+		this.unit = sensorUnit;
 	};
 
 	TemperatureSensor.prototype.changeUnit = function(newUnit){
@@ -33,5 +33,31 @@
 	TemperatureSensor.prototype.constructor = TemperatureSensor;
 
 	exports.TemperatureSensor = TemperatureSensor;
+
+	/******************** Soil Moisture Sensor Class ********************/
+
+	function MoistureSensor(sensorID, sensorName, sensorDescription){
+		this.ID = sensorID;
+		this.type = sensorName;
+		this.description = sensorDescription;
+	};
+
+	MoistureSensor.prototype = new Sensor();
+	MoistureSensor.prototype.constructor = MoistureSensor;
+
+	exports.MoistureSensor = MoistureSensor;
+
+	/******************** Light Sensor Class ********************/
+
+	function LightSensor(sensorID, sensorName, sensorDescription){
+		this.ID = sensorID;
+		this.type = sensorName;
+		this.description = sensorDescription;
+	};
+
+	LightSensor.prototype = new Sensor();
+	LightSensor.prototype.constructor = LightSensor;
+
+	exports.LightSensor = LightSensor;
 
 })();

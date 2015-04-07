@@ -10,15 +10,15 @@
   "members": [
     {
       "@id": "/sensors/temperature/",
-      "@type": "hydra:Link"
+      "@type": "vocab:TemperatureSensor"
     },
     {
       "@id": "/sensors/moisture/",
-      "@type": "hydra:Link"
+      "@type": "vocab:MoistureSensor"
     },
     {
       "@id": "/sensors/light/",
-      "@type": "hydra:Link"
+      "@type": "vocab:LightSensor"
     }
   ]
 }
