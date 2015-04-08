@@ -1,0 +1,16 @@
+{
+  "iot" : "https://iotdb.org/pub/iot#",
+  "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
+  "iot-unit" : "https://iotdb.org/pub/iot-unit#",
+  "vocab" : "http://www.example.org/vocab#",
+  "sensorID" : "iot:uuid",
+  "sensorName" : "iot:name",
+  "sensorDescription" : "iot:description",
+  "sensorValue" : { 
+    "@id" : "iot-attribute:temperature",
+    "@type" : "iot:number"
+  },
+  "sensorUnit" : "iot:unit",
+  "timestamp" : "iot:datetime",
+  "TemperatureSensor" : "vocab:TemperatureSensor"
+}

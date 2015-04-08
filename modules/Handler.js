@@ -9,9 +9,21 @@
 			get: "/contexts/get_sensors.jsonld",
 			post : "/contexts/post_sensors.jsonld"
 		},
-		temperature_sensor : "/contexts/get_sensor_temperature_value.jsonld",
-		moisture_sensor : "/contexts/get_sensor_moisture_value.jsonld",
-		light_sensor : "/contexts/get_sensor_light_value.jsonld",
+		temperature_sensor : {
+			get : "/contexts/get_sensor_temperature.jsonld",
+			put : "/contexts/put_sensor_temperature.jsonld",
+			delete : "/contexts/delete_sensor_temperature.jsonld"
+		},
+		moisture_sensor : {
+			get : "/contexts/get_sensor_moisture.jsonld",
+			put : "/contexts/put_sensor_moisture.jsonld",
+			delete : "/contexts/delete_sensor_moisture.jsonld"
+		},
+		light_sensor : {
+			get : "/contexts/get_sensor_light.jsonld",
+			put : "/contexts/put_sensor_light.jsonld",
+			delete : "/contexts/delete_sensor_light.jsonld"
+		},
 		actuators: "/contexts/actuators.jsonld",
 		pump : { 
 			get: "/contexts/get_pump.jsonld",
@@ -75,10 +87,33 @@
 			callback(response);
 		},
 		getSensorValue : function(sensor, callback){
-			//todo
-			for(var i = 0; i >= sensors.length; i++){
-				
+			var date = new Date(); 
+			var response = {
+				"@id" : ("/sensors/" + sensor.ID),
+			  "sensorID" : sensor.ID,
+			  "sensorName" : sensor.name,
+			  "sensorDescription" : sensor.description,
+			  "sensorValue" : sensor.read(),
+			  "timestamp" : date.toISOString()
 			};
+			
+			if(sensor instanceof sensor_module.TemperatureSensor){
+				response["@contexts"] = rootPath + contexts.temperature_sensor.get;
+				response["@type"] = "TemperatureSensor";
+				response["sensorUnit"] = sensor.unit;
+			}
+
+			if(sensor instanceof sensor_module.MoistureSensor){
+				response["@contexts"] = rootPath + contexts.moisture_sensor.get;
+				response["@type"] = "MoistureSensor";
+			}
+
+			if(sensor instanceof sensor_module.LightSensor){
+				response["@contexts"] = rootPath + contexts.light_sensor.get;
+				response["@type"] = "LightSensor";
+			}
+
+			callback(response);
 		}
 	}
 

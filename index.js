@@ -84,20 +84,22 @@ var getSensors = function(req, res){
 }
 
 var addNewSensor = function(req, res){
+  //TODO = COME FACCIO A SAPERE SE L'OGGETTO CHE RICEVO è CONFORME ALLE MIE "ASPETTATIVE"?
+  //Non si potrebbe avere una regola che valida il formato?????
   res.send({success:false});
 }
 
 var getSensorValue = function(req, res){
-  var sensorID = req.params.sensorID;
-  try {
-    fs.readFile('examples/get_temperature_value.jsonld', function(err, data){
-      if (err) throw err;
-      res.send(data);
-    });
-  } catch (e) {
-    console.log("Error in reading file");
-    res.send({success:false});
+  var sensorID_required = req.params.sensorID;
+  for (var i = 0; i < sensors.length; i++) {
+    if(sensors[i].ID == sensorID_required){
+      handler.Sensor.getSensorValue(sensors[i], function(jsonld_data){
+        res.send(jsonld_data);
+      });
+      return null;
+    }
   }
+  res.send({success:false});
 }
 
 var updateSensorInfo = function(req, res){
@@ -112,7 +114,7 @@ var deleteSensor = function(req, res){
 
 var getActuators = function(req, res){
   console.log("getActuators");
-  res.send({success:true});
+  res.send({success:false});
 }
 
 var addNewActuator = function(req, res){
@@ -121,12 +123,12 @@ var addNewActuator = function(req, res){
 
 var getActuatorState = function(req, res){
   console.log("getActuatorState");
-  res.send({success:true});
+  res.send({success:false});
 }
 
 var updateActuatorInfo = function(req, res){
   console.log("updateActuatorInfo");
-  res.send({success:true});
+  res.send({success:false});
 }
 
 var deleteActuator = function(req, res){
@@ -138,13 +140,13 @@ var setNewActuatorState = function(req, res){
   var actuatorID = req.params.actuatorID;
   var newState = req.params.value;
   console.log("New STATE! ActuatorID: " + actuatorID + " -  Value: " + newState);
-  res.send({success:true});
+  res.send({success:false});
 }
 
 /**** GEOLOCATION ***/
 
 var getGeocoordinates = function(req, res){
-  res.send({success:true});
+  res.send({success:false});
 }
 
 /**** PLANTS ***/
@@ -162,7 +164,7 @@ var getPlants = function(req, res){
 }
 
 var addNewPlant = function(req, res){
-  res.send({success:true});
+  res.send({success:false});
 }
 
 var getPlantInfo = function(req, res){
@@ -178,11 +180,11 @@ var getPlantInfo = function(req, res){
 }
 
 var updatePlantInfo = function(req, res){
-  res.send({success:true});
+  res.send({success:false});
 }
 
 var deletePlant = function(req, res){
-  res.send({success:true});
+  res.send({success:false});
 }
 
 
