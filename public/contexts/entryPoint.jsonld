@@ -1,5 +1,6 @@
 {
   "vocab" : "http://www.example.org/vocab#",
+  "EntryPoint" : "vocab:EntryPoint",
   "plants" : {
     "@id" : "vocab:EntryPoint_plants",
     "@type" : "@id"

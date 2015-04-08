@@ -1,0 +1,9 @@
+{
+  "hydra": "http://www.w3.org/ns/hydra/core#",
+  "vocab" : "http://www.example.org/vocab#",
+  "Collection": "hydra:Collection",
+  "members": "hydra:member",
+  "TemperatureSensor" : "vocab:TemperatureSensor",
+  "MoistureSensor" : "vocab:MoistureSensor",
+  "LightSensor" : "vocab:LightSensor"
+}

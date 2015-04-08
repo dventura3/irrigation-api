@@ -3,8 +3,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var sensor_module = require('./modules/Sensors_classes');
 var actuator_module = require('./modules/Actuators_classes');
-var handler_module = require('./modules/CallsHandler');
+var handler_module = require('./modules/Handler');
 
+var sensors = [];
+var actuators = [];
+var plants = [];
 var handler;
 
 /*--------------- Express configuration goes here: -------------------*/
@@ -33,9 +36,6 @@ app.listen(port, host, function() {
     fs.readFile('modules/fakeResources.json', function(err, data){
       if (err) throw err;
 
-      var sensors = [];
-      var actuators = [];
-      
       config = JSON.parse(data);
       for(var i = 0; i < config.sensors.length; i++){
         if(config.sensors[i].type == "TemperatureSensor")
@@ -53,7 +53,7 @@ app.listen(port, host, function() {
         actuators.push(tmp);
       }
 
-      handler = new handler_module.Handler(sensors, actuators, null, "http://localhost:3300/");
+      handler = new handler_module.Handler("http://" + host + ":" + port);
 
       console.log("Server configured");
       console.log("Server listening to %s:%d", host, port);
@@ -70,29 +70,17 @@ app.listen(port, host, function() {
 /**** ENTRYPOINT ***/
 
 var getEntryPoint = function(req, res){
-  try {
-    fs.readFile('examples/get_entryPoint.jsonld', function(err, data){
-      if (err) throw err;
-      res.send(data);
-    });
-  } catch (e) {
-    console.log("Error in reading file");
-    res.send({success:false});
-  }
+  handler.EntryPoint.getEntryPoint(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 /**** SENSORS ***/
 
 var getSensors = function(req, res){
-  try {
-    fs.readFile('examples/get_sensors.jsonld', function(err, data){
-      if (err) throw err;
-      res.send(data);
-    });
-  } catch (e) {
-    console.log("Error in reading file");
-    res.send({success:false});
-  }
+  handler.Sensor.getSensors(sensors, function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var addNewSensor = function(req, res){
