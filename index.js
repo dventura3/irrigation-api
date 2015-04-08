@@ -3,9 +3,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var sensor_module = require('./modules/Sensors_classes');
 var actuator_module = require('./modules/Actuators_classes');
+var handler_module = require('./modules/CallsHandler');
 
-var sensors = [];
-var actuators = [];
+var handler;
 
 /*--------------- Express configuration goes here: -------------------*/
 var app = express();
@@ -30,8 +30,11 @@ app.use(express.static(__dirname + '/public'));
 app.listen(port, host, function() {
   //configuration
   try {
-    fs.readFile('fakeResources.json', function(err, data){
+    fs.readFile('modules/fakeResources.json', function(err, data){
       if (err) throw err;
+
+      var sensors = [];
+      var actuators = [];
       
       config = JSON.parse(data);
       for(var i = 0; i < config.sensors.length; i++){
@@ -49,6 +52,8 @@ app.listen(port, host, function() {
           var tmp = new actuator_module.Pump(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
         actuators.push(tmp);
       }
+
+      handler = new handler_module.Handler(sensors, actuators, null, "http://localhost:3300/");
 
       console.log("Server configured");
       console.log("Server listening to %s:%d", host, port);
