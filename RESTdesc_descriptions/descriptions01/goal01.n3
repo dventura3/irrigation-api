@@ -1,0 +1,28 @@
+@prefix vocab: <http://www.example.org/vocab#>.
+@prefix dbpedia: <http://dbpedia.org/resource/>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix iot: <https://iotdb.org/pub/iot#>.
+@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
+@prefix iot-unit: <https://iotdb.org/pub/iot-unit#>.
+
+
+#GOAL 1
+{
+
+	?obj a vocab:Sensor;
+			iot:uuid ?id.
+
+	?state a st:State;
+				log:includes { ?obj vocab:madeObservation ?obs. }.
+
+	?obs vocab:outputObservation ?result.
+	?result a dbpedia:Temperature.
+	#			iot-attribute:temperature ?value;
+	#			iot:unit iot-unit:temperature.si.celsius.
+}
+=>
+{
+	?obj iot:uuid ?id.
+}.

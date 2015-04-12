@@ -113,7 +113,6 @@ var deleteSensor = function(req, res){
 /**** ACTUATORS ***/
 
 var getActuators = function(req, res){
-  console.log("getActuators");
   res.send({success:false});
 }
 
@@ -152,15 +151,7 @@ var getGeocoordinates = function(req, res){
 /**** PLANTS ***/
 
 var getPlants = function(req, res){
-  try {
-    fs.readFile('examples/get_plants_list.jsonld', function(err, data){
-      if (err) throw err;
-      res.send(data);
-    });
-  } catch (e) {
-    console.log("Error in reading file");
-    res.send({success:false});
-  }
+  res.send({success:false});
 }
 
 var addNewPlant = function(req, res){
@@ -168,15 +159,10 @@ var addNewPlant = function(req, res){
 }
 
 var getPlantInfo = function(req, res){
-  try {
-    fs.readFile('examples/get_plant_info.jsonld', function(err, data){
-      if (err) throw err;
-      res.send(data);
-    });
-  } catch (e) {
-    console.log("Error in reading file");
-    res.send({success:false});
-  }
+  console.log("Currently this method return only a static Plant info");
+  handler.Plant.getPlantInfo(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var updatePlantInfo = function(req, res){

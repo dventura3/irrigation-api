@@ -6,11 +6,13 @@
   "sensorID" : "iot:uuid",
   "sensorName" : "iot:name",
   "sensorDescription" : "iot:description",
-  "sensorValue" : { 
+  "sensorData" : { 
     "@id" : "iot-attribute:temperature",
     "@type" : "iot:number"
   },
   "sensorUnit" : "iot:unit",
   "timestamp" : "iot:datetime",
-  "TemperatureSensor" : "vocab:TemperatureSensor"
+  "TemperatureSensor" : "vocab:TemperatureSensor",
+  "madeObservation" : "vocab:madeObservation",
+  "observationResult" : "vocab:outputObservation"
 }

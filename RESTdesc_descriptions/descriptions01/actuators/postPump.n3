@@ -1,0 +1,29 @@
+@prefix vocab: <http://www.example.org/vocab#>.
+@prefix http: <http://www.w3.org/2011/http#>.
+@prefix hydra: <http://www.w3.org/ns/hydra/core#>.
+@prefix iot: <https://iotdb.org/pub/iot#>.
+@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
+@prefix st: <http://www.mystates.org/states#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+
+
+{
+  ?pump a vocab:IrrigationPump;
+      iot:uuid ?id;
+      iot:name ?name;
+			iot:description ?desc;
+			iot-attribute:on ?state.
+}
+=>
+{
+  _:request http:methodName "POST";
+            http:body ?pump;
+            http:requestURI ("/actuators/");
+            http:response [http:body ?pump].
+
+  [ a st:StateTransition;
+    st:typeOperation "add";
+    st:newComponent { ?pump iot-attribute:on ?state. };
+    st:originalState ?state
+  ].
+}.

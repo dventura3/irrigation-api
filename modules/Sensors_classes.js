@@ -25,6 +25,13 @@
 		Sensor.call(this, sensorID, sensorName, sensorDescription);
 		this.unit = sensorUnit;
 
+		/* Ma dovrebbe essere una classe????
+		observed_temperature = {
+			value : 25,
+			unit : celsius
+		}
+		*/
+
 		this.changeUnit = function(newUnit){
 			//TODO
 			return null;
@@ -50,7 +57,7 @@
 		}
 	};
 
-	MoistureSensor.prototype = new Sensor();
+	MoistureSensor.prototype = new Sensor;
 	//MoistureSensor.prototype.constructor = MoistureSensor;
 
 	exports.MoistureSensor = MoistureSensor;
@@ -65,7 +72,7 @@
 		}
 	};
 
-	LightSensor.prototype = new Sensor();
+	LightSensor.prototype = new Sensor;
 	//LightSensor.prototype.constructor = LightSensor;
 
 	exports.LightSensor = LightSensor;
