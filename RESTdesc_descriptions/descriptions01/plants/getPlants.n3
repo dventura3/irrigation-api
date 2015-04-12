@@ -4,15 +4,15 @@
 
 
 {
-	?plantsList a hydra:Collection;
-					hydra:member ?onePlant.
+  ?plantsList a hydra:Collection;
+          hydra:member ?onePlant.
 }
 =>
 {
-	_:request http:methodName "GET";
-    				http:requestURI "/plants/";
-						http:resp [ http:body ?plantsList ].
+  _:request http:methodName "GET";
+            http:requestURI "/plants/";
+            http:resp [ http:body ?plantsList ].
 
-	?onePlant a vocab:Plant;
-				vocab:uuid ?id.
+  ?onePlant a vocab:Plant;
+        vocab:uuid ?id.
 }.

@@ -9,25 +9,25 @@
 
 
 {
-	?sensor a vocab:TemperatureSensor;
-					iot:uuid ?id.
-	?state a st:State;
-					log:includes { ?sensor vocab:madeObservation ?obs. }.
+  ?sensor a vocab:TemperatureSensor;
+          iot:uuid ?id.
+  ?state a st:State;
+          log:includes { ?sensor vocab:madeObservation ?obs. }.
 }
 =>
 {
-	_:request http:methodName "GET";
-    				http:requestURI ("/sensors/" ?id);
-						http:resp [ http:body ?sensor ].
+  _:request http:methodName "GET";
+            http:requestURI ("/sensors/" ?id);
+            http:resp [ http:body ?sensor ].
 
-	?sensor iot:name ?name;
-					iot:description ?desc;
-					vocab:madeObservation ?obs.
+  ?sensor iot:name ?name;
+          iot:description ?desc;
+          vocab:madeObservation ?obs.
 
-	?obs iot:datetime ?timestamp;
-			 vocab:outputObservation ?result.
+  ?obs iot:datetime ?timestamp;
+       vocab:outputObservation ?result.
 
-	?result a dbpedia:Temperature;
-				iot-attribute:temperature ?tempValue;
-				iot:unit iot-unit:temperature.si.celsius.
+  ?result a dbpedia:Temperature;
+        iot-attribute:temperature ?tempValue;
+        iot:unit iot-unit:temperature.si.celsius.
 }.

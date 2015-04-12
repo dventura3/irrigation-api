@@ -7,29 +7,29 @@
 
 
 {
-	?plant a vocab:Plant;
-				vocab:uuid ?id.
+  ?plant a vocab:Plant;
+        vocab:uuid ?id.
 }
 =>
 {
-	_:request http:methodName "GET";
-    				http:requestURI ("/plants/" ?id);
-						http:resp [ http:body ?plant ].
+  _:request http:methodName "GET";
+            http:requestURI ("/plants/" ?id);
+            http:resp [ http:body ?plant ].
 
-	?plant 	schema:name ?name;
-					schema:description ?desc;
-					vocab:hasIdealEnvironmentConditions ?idealEnv;
-					vocab:hasAssociatedSensors ?sensors;
-					vocab:hasAssociatedActuators ?actuators.
+  ?plant  schema:name ?name;
+          schema:description ?desc;
+          vocab:hasIdealEnvironmentConditions ?idealEnv;
+          vocab:hasAssociatedSensors ?sensors;
+          vocab:hasAssociatedActuators ?actuators.
 
-	?idealEnv a vocab:IdealEnvironment;
-				iot-attribute:temperature ?tempValue;
-				iot-attribute:moisture ?moistureValue;
-				iot-attribute:light ?lightValue.
+  ?idealEnv a vocab:IdealEnvironment;
+        iot-attribute:temperature ?tempValue;
+        iot-attribute:moisture ?moistureValue;
+        iot-attribute:light ?lightValue.
 
-	?sensors 	a hydra:Collection;
-						hydra:member [a vocab:Sensor].
+  ?sensors  a hydra:Collection;
+            hydra:member [a vocab:Sensor].
 
-	?actuators 	a hydra:Collection;
-						hydra:member [a vocab:Actuator].
+  ?actuators  a hydra:Collection;
+            hydra:member [a vocab:Actuator].
 }.

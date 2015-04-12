@@ -15,36 +15,36 @@ st:StateTransition a rdfs:Class.
 
 
 st:oldComponent a rdf:Property;
-         			 rdfs:domain st:StateTransition;
-        			 rdfs:range log:Formula.
+               rdfs:domain st:StateTransition;
+               rdfs:range log:Formula.
 
 st:newComponent a rdf:Property;
-         			 rdfs:domain st:StateTransition;
-        			 rdfs:range log:Formula.
+               rdfs:domain st:StateTransition;
+               rdfs:range log:Formula.
 
 st:originalState a rdf:Property;
-         			 rdfs:domain st:StateTransition;
-        			 rdfs:range st:State.
+               rdfs:domain st:StateTransition;
+               rdfs:range st:State.
 
 st:typeOperation a rdf:Property;
-         			 rdfs:domain st:StateTransition;
-         			 rdfs:range rdfs:Literal.
+               rdfs:domain st:StateTransition;
+               rdfs:range rdfs:Literal.
 
 
 
 #add
 {
-	?transition  a st:StateTransition;
-      			   st:typeOperation "add";
-      			   st:newComponent ?newComponent;
-      			   st:originalState ?oldState.
+  ?transition  a st:StateTransition;
+               st:typeOperation "add";
+               st:newComponent ?newComponent;
+               st:originalState ?oldState.
 
   #e.g. ({:a :b :c} {:d :e :f}) log:conjunction {:a :b :c. :d :e :f}.";
   (?oldState ?newComponent) log:conjunction ?newState.
 }
 =>
 {
-	?newState a st:State.
+  ?newState a st:State.
 }.
 
 
@@ -69,11 +69,11 @@ st:typeOperation a rdf:Property;
 
 #replace (unione di add e remove)
 {
-	?transition a st:StateTransition;
+  ?transition a st:StateTransition;
               st:typeOperation "replacement";
               st:oldComponent ?oldComponent;
-      				st:newComponent ?newComponent;
-      				st:originalState ?oldState.
+              st:newComponent ?newComponent;
+              st:originalState ?oldState.
 
   #e.g. ({:a :b :c. :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}.";
   (?oldState ?oldComponent) e:graphDifference ?stateWithoutOldComponent.
@@ -83,5 +83,5 @@ st:typeOperation a rdf:Property;
 }
 =>
 {
-	?newState a st:State.
+  ?newState a st:State.
 }.

@@ -11,8 +11,8 @@
   ?pump a vocab:IrrigationPump;
       iot:uuid ?id;
       iot:name ?name;
-			iot:description ?desc;
-			iot-attribute:on ?state.
+      iot:description ?desc;
+      iot-attribute:on ?state.
 }
 =>
 {

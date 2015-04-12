@@ -7,18 +7,18 @@
 
 
 {
-	?sensorsList a hydra:Collection;
-					hydra:member ?oneSensor.
+  ?sensorsList a hydra:Collection;
+          hydra:member ?oneSensor.
 }
 =>
 {
-	_:request http:methodName "GET";
-    				http:requestURI "/sensors/";
-						http:resp [ http:body ?sensorsList ].
+  _:request http:methodName "GET";
+            http:requestURI "/sensors/";
+            http:resp [ http:body ?sensorsList ].
 
-	?oneSensor a vocab:Sensor;
-				iot:uuid ?id.
+  ?oneSensor a vocab:Sensor;
+        iot:uuid ?id.
 
-	?state a st:State;
-					log:includes { ?oneSensor vocab:madeObservation ?obs. }.
+  ?state a st:State;
+          log:includes { ?oneSensor vocab:madeObservation ?obs. }.
 }.

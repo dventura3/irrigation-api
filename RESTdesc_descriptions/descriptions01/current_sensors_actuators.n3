@@ -6,21 +6,21 @@
 @prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
 
 
-vocab:MySensorTemp	a vocab:TemperatureSensor;
-			iot:uuid "1".
+vocab:MySensorTemp  a vocab:TemperatureSensor;
+      iot:uuid "1".
 vocab:MySensorLight a vocab:LightSensor;
-			iot:uuid "2".
+      iot:uuid "2".
 vocab:MySensorMoisture a vocab:MoistureSensor;
-			iot:uuid "3".
+      iot:uuid "3".
 
 
 vocab:Pump_1 a vocab:IrrigationPump;
-			iot:uuid "1".
+      iot:uuid "1".
 
 
 {
-	vocab:MySensorTemp vocab:madeObservation _:tempObs.
-	vocab:MySensorLight vocab:madeObservation _:lightObs.
-	vocab:MySensorMoisture vocab:madeObservation _:moistureObs.
-	vocab:Pump_1 iot-attribute:on _:switched.
+  vocab:MySensorTemp vocab:madeObservation _:tempObs.
+  vocab:MySensorLight vocab:madeObservation _:lightObs.
+  vocab:MySensorMoisture vocab:madeObservation _:moistureObs.
+  vocab:Pump_1 iot-attribute:on _:switched.
 } a st:State.
