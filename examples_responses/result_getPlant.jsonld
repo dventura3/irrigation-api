@@ -1,0 +1,69 @@
+{
+    "@context": {
+        "hydra": "http://www.w3.org/ns/hydra/core#",
+        "vocab": "http://www.example.org/vocab#",
+        "schema": "http://www.schema.org/",
+        "iot-attribute": "https://iotdb.org/pub/iot-attribute#",
+        "name": "schema:name",
+        "description": "schema:description",
+        "associatedSensors": "vocab:hasAssociatedSensors",
+        "associatedActuators": "vocab:hasAssociatedActuators",
+        "idealEnvironment": "vocab:hasIdealEnvironmentConditions",
+        "idealTemperature": "iot-attribute:temperature",
+        "idealMoisture": "iot-attribute:moisture",
+        "idealLight": "iot-attribute:light"
+    },
+    "@id": "/plants/1",
+    "@type": "vocab:Plant",
+    "name": "rosa",
+    "description": "Red Rose",
+    "idealEnvironment": [
+        {
+            "@id": "http://example.org/graphs/idealMorning",
+            "@graph": {
+                "@type": "vocab:IdealEnvironment",
+                "idealTemperature": 30,
+                "idealMoisture": 60,
+                "idealLight": 35
+            }
+        },
+        {
+            "@id": "http://example.org/graphs/idealAfternoon",
+            "@graph": {
+                "@type": "vocab:IdealEnvironment",
+                "idealTemperature": 60,
+                "idealMoisture": 50,
+                "idealLight": 55
+            }
+        },
+        {
+            "@id": "http://example.org/graphs/idealNight",
+            "@graph": {
+                "@type": "vocab:IdealEnvironment",
+                "idealTemperature": 15,
+                "idealMoisture": 20,
+                "idealLight": 0
+            }
+        }
+    ],
+    "associatedSensors": [
+        {
+            "@id": "/sensors/001/",
+            "@type": "vocab:TemperatureSensor"
+        },
+        {
+            "@id": "/sensors/002/",
+            "@type": "vocab:MoistureSensor"
+        },
+        {
+            "@id": "/sensors/003/",
+            "@type": "vocab:LightSensor"
+        }
+    ],
+    "associatedActuators": [
+        {
+            "@id": "/actuators/001/",
+            "@type": "vocab:Pump"
+        }
+    ]
+}
