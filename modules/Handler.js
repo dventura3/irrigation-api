@@ -31,8 +31,15 @@
       delete : "/contexts/delete_pump.jsonld"
     },
     geo : "/contexts/geo.jsonld",
-    plants : "/contexts/plants.jsonld",
-    plant : "/contexts/plants_plantID"
+    plants : {
+      get: "/contexts/get_plants.jsonld",
+      post : "/contexts/post_plants.jsonld"
+    },
+    plant : { 
+      get: "/contexts/get_plant.jsonld",
+      put: "/contexts/put_plant.jsonld",
+      delete : "/contexts/delete_plant.jsonld"
+    }
   };
 
   function Handler(path){
@@ -128,127 +135,92 @@
   };
 
   Handler.prototype.Plant = {
-    getPlantInfo : function(callback){
-      var plant = {
-        "@context": {
-          "hydra": "http://www.w3.org/ns/hydra/core#",
-          "vocab" : "http://www.example.org/vocab#",
-          "schema" : "http://www.schema.org/",
-          "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
-          "name" : "schema:name",
-          "description" : "schema:description",
-          "associatedSensors" : "vocab:hasAssociatedSensors",
-          "associatedActuators" : "vocab:hasAssociatedActuators",
-          "idealTemperature" : "iot-attribute:temperature",
-          "idealMoisture" : "iot-attribute:moisture",
-          "idealLight" : "iot-attribute:light"
-        },
-        "@id": "http://www.graphs.org/",
-        "@graph": [
+    getPlantInfo : function(plant, callback){
+      var context_folder = rootPath + contexts.plant.get;
+      var response = {
+        "@context" : context_folder,
+        "@graph" : [
           {
             "@id" : "http://example.org/graphs/idealMorning",
-            "@graph": {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 30,
-              "idealMoisture": 60,
-              "idealLight" : 35,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
+            "@graph" : {
+              "@id" : ("/plants/" + plant.ID),
+              "@type" : "Plant",
+              "name" : plant.name,
+              "description" : plant.description,
+              "idealTemperature" : {
+                "@type" : "Temperature",
+                temperatureValue : plant.idealMorning.idealTemperature.temperatureValue,
+                temperatureUnit : plant.idealMorning.idealTemperature.temperatureUnit
+              },
+              "idealMoisture" : {
+                "@type" : "Moisture",
+                moistureValue : plant.idealMorning.idealMoisture.moistureValue
+              },
+              "idealLight" : {
+                "@type" : "Light",
+                lightValue : plant.idealMorning.idealLight.lightValue
+              },
+              "associatedSensors" : plant.associatedSensors,
+              "associatedActuators" : plant.associatedActuators
             }
           },
           {
             "@id" : "http://example.org/graphs/idealAfternoon",
-            "@graph": {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 25,
-              "idealMoisture": 80,
-              "idealLight" : 60,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
+            "@graph" : {
+              "@id" : ("/plants/" + plant.ID),
+              "@type" : "Plant",
+              "name" : plant.name,
+              "description" : plant.description,
+              "idealTemperature" : {
+                "@type" : "Temperature",
+                temperatureValue : plant.idealAfternoon.idealTemperature.temperatureValue,
+                temperatureUnit : plant.idealAfternoon.idealTemperature.temperatureUnit
+              },
+              "idealMoisture" : {
+                "@type" : "Moisture",
+                moistureValue : plant.idealAfternoon.idealMoisture.moistureValue
+              },
+              "idealLight" : {
+                "@type" : "Light",
+                lightValue : plant.idealAfternoon.idealLight.lightValue
+              },
+              "associatedSensors" : plant.associatedSensors,
+              "associatedActuators" : plant.associatedActuators
             }
           },
           {
             "@id" : "http://example.org/graphs/idealNight",
             "@graph" : {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 18,
-              "idealMoisture": 30,
-              "idealLight" : 5,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
+              "@id" : ("/plants/" + plant.ID),
+              "@type" : "Plant",
+              "name" : plant.name,
+              "description" : plant.description,
+              "idealTemperature" : {
+                "@type" : "Temperature",
+                temperatureValue : plant.idealNight.idealTemperature.temperatureValue,
+                temperatureUnit : plant.idealNight.idealTemperature.temperatureUnit
+              },
+              "idealMoisture" : {
+                "@type" : "Moisture",
+                moistureValue : plant.idealNight.idealMoisture.moistureValue
+              },
+              "idealLight" : {
+                "@type" : "Light",
+                lightValue : plant.idealNight.idealLight.lightValue
+              },
+              "associatedSensors" : plant.associatedSensors,
+              "associatedActuators" : plant.associatedActuators
             }
           }
         ]
-      }
-      callback(plant);
+      };
+
+      callback(response);
     }
   }
 
 
-
+/*
   Handler.prototype.nquads = {
     conversion : function(callback){
       var doc = {
@@ -424,7 +396,7 @@
 
     }
   };
-
+*/
 
   exports.Handler = Handler;
 

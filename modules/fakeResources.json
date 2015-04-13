@@ -2,20 +2,20 @@
   "sensors" : [
     {
       "type" : "TemperatureSensor",
-      "sensorID" : "001",
+      "sensorID" : 1,
       "sensorName" : "Sensor of Temperature",
       "sensorDescription" : "This sensor measures the temperature in the environment",
       "sensorUnit" : "iot-unit:temperature.si.celsius"
     },
     {
       "type" : "MoistureSensor",
-      "sensorID" : "002",
+      "sensorID" : 2,
       "sensorName" : "Soil Moisture Sensor",
       "sensorDescription" : "This sensor measures the moisture/humidity in the soil"
     },
     {
       "type" : "LightSensor",
-      "sensorID" : "003",
+      "sensorID" : 3,
       "sensorName" : "Light Sensor",
       "sensorDescription" : "This sensor measures the quantity of light in the environment"
     }
@@ -23,10 +23,55 @@
   "actuators" : [
     {
       "type" : "Pump",
-      "actuatorID" : "001",
+      "actuatorID" : 1,
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
       "state" : 1
+    }
+  ],
+  "plants" : [
+    {
+      "plantID" : 1,
+      "plantName" : "Rose",
+      "plantDescription" : "Red Rose",
+      "idealMorning" : {
+        "idealTemperature": {
+          "temperatureValue" : 20,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 60
+        },
+        "idealLight" : {
+          "lightValue" : 35
+        }
+      },
+      "idealAfternoon" : {
+        "idealTemperature": {
+          "temperatureValue" : 25,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 80
+        },
+        "idealLight" : {
+          "lightValue" : 60
+        }
+      },
+      "idealNight" : {
+        "idealTemperature": { 
+          "temperatureValue" : 18,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 30
+        },
+        "idealLight" : {
+          "lightValue" : 5
+        }
+      },
+      "associatedSensors" : [1,2,3],
+      "associatedActuators" : [1]
     }
   ]
 }

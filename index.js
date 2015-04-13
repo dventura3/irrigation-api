@@ -3,6 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var sensor_module = require('./modules/Sensors_classes');
 var actuator_module = require('./modules/Actuators_classes');
+var plant_module = require('./modules/Plant_class');
 var handler_module = require('./modules/Handler');
 
 var sensors = [];
@@ -51,6 +52,39 @@ app.listen(port, host, function() {
         if(config.actuators[i].type == "Pump")
           var tmp = new actuator_module.Pump(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
         actuators.push(tmp);
+      }
+
+      for(var i = 0; i < config.plants.length; i++){
+        var tmpAssociatedSensors = [];
+        //find the sensors type and ID
+        for(var x = 0; x < config.plants[i].associatedSensors.length; x++){
+          for (var h = 0; h < config.sensors.length; h++) {
+            if(config.sensors[h].sensorID == config.plants[i].associatedSensors[x]){
+              tmpAssociatedSensors.push({
+                "@id" : ("/sensors/" + config.sensors[h].sensorID),
+                "@type" : config.sensors[h].type
+              });
+              break;
+            }
+          }
+        }
+        var tmpAssociatedActuators = [];
+        //find the actuators type and ID
+        for(var x = 0; x < config.plants[i].associatedActuators.length; x++){
+          for(var h = 0; h <config.actuators.length; h++){
+            if(config.actuators[h].actuatorID == config.plants[i].associatedActuators[x]){
+              tmpAssociatedActuators.push({
+                "@id" : ("/actuators/" + config.actuators[h].actuatorID),
+                "@type" : config.actuators[h].type
+              });
+              break;
+            }
+          }
+        }
+
+        var tmp = new plant_module.Plant(config.plants[i], tmpAssociatedSensors, tmpAssociatedActuators);
+        plants.push(tmp);
+        console.log(JSON.stringify(tmp));
       }
 
       handler = new handler_module.Handler("http://" + host + ":" + port);
@@ -159,10 +193,16 @@ var addNewPlant = function(req, res){
 }
 
 var getPlantInfo = function(req, res){
-  console.log("Currently this method return only a static Plant info");
-  handler.Plant.getPlantInfo(function(jsonld_data){
-    res.send(jsonld_data);
-  });
+  var plantID_required = req.params.plantID;
+  for (var i = 0; i < plants.length; i++) {
+    if(plants[i].ID == plantID_required){
+      handler.Plant.getPlantInfo(plants[i], function(jsonld_data){
+        res.send(jsonld_data);
+      });
+      return null;
+    }
+  }
+  res.send({success:false});
 }
 
 var updatePlantInfo = function(req, res){
