@@ -1,6 +1,7 @@
 {
     "@contexts": "http://127.0.0.1:3300/contexts/get_sensor_temperature.jsonld",
     "@id": "/sensors/001",
+    "@type": "TemperatureSensor",
     "sensorID": "001",
     "sensorName": "Sensor of Temperature",
     "sensorDescription": "This sensor measures the temperature in the environment",
@@ -10,8 +11,8 @@
         "timestamp": "2015-04-12T21:04:33.703Z",
         "observationResult": {
             "@id": "_:result",
+            "@type": "Temperature",
             "sensorData": 0.6419226434081793,
-            "@type": "TemperatureSensor",
             "sensorUnit": "iot-unit:temperature.si.celsius"
         }
     }

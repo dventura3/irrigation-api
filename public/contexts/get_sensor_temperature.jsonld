@@ -3,6 +3,7 @@
   "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
   "iot-unit" : "https://iotdb.org/pub/iot-unit#",
   "vocab" : "http://www.example.org/vocab#",
+  "dbpedia" : "http://dbpedia.org/resource/",
   "sensorID" : "iot:uuid",
   "sensorName" : "iot:name",
   "sensorDescription" : "iot:description",
@@ -14,5 +15,6 @@
   "timestamp" : "iot:datetime",
   "TemperatureSensor" : "vocab:TemperatureSensor",
   "madeObservation" : "vocab:madeObservation",
-  "observationResult" : "vocab:outputObservation"
+  "observationResult" : "vocab:outputObservation",
+  "Temperature" : "dbpedia:Temperature"
 }
