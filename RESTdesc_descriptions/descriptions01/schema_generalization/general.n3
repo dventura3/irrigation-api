@@ -8,17 +8,17 @@
 {
   ?list a :Collection;
         :hasMember ?oneElem.
-
-  ?class a :ElementClass.
-  ?oneElem a ?class;
-          :hasId ?id.
 }
 =>
 {
   _:request http:methodName "GET";
             http:requestURI ?url;
             http:resp [ http:body ?list ].
-}
+
+  ?class a :ElementClass.
+  ?oneElem a ?class;
+          :hasId ?id.
+}.
 
 
 
@@ -40,7 +40,7 @@
   ?list :hasMember ?oneElem.
 
   ?oneElem :hasId ?id.
-}
+}.
 
 
 
@@ -58,7 +58,7 @@
             http:resp [ http:body ?elem ].
 
   ?elem :hasAttribute ?x.
-}
+}.
 
 
 
@@ -82,4 +82,4 @@
 
   ?newElem  :hasId ?id;
             :hasAttribute ?y.
-}
+}.
