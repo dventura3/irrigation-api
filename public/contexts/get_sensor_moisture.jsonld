@@ -1,0 +1,20 @@
+{
+  "iot" : "https://iotdb.org/pub/iot#",
+  "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
+  "iot-unit" : "https://iotdb.org/pub/iot-unit#",
+  "vocab" : "http://www.example.org/vocab#",
+  "dbpedia" : "http://dbpedia.org/resource/",
+  "sensorID" : "iot:uuid",
+  "sensorName" : "iot:name",
+  "sensorDescription" : "iot:description",
+  "sensorData" : { 
+    "@id" : "iot-attribute:moisture",
+    "@type" : "iot:number"
+  },
+  "sensorUnit" : "iot:unit",
+  "timestamp" : "iot:datetime",
+  "MoistureSensor" : "vocab:MoistureSensor",
+  "madeObservation" : "vocab:madeObservation",
+  "observationResult" : "vocab:outputObservation",
+  "Moisture" : "dbpedia:Moisture"
+}
