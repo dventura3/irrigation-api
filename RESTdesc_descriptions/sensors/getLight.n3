@@ -4,14 +4,11 @@
 @prefix http: <http://www.w3.org/2011/http#>.
 @prefix dbpedia: <http://dbpedia.org/resource/>.
 @prefix iot: <https://iotdb.org/pub/iot#>.
-@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
 
 
 {
   ?sensor a vocab:LightSensor;
           iot:uuid ?id.
-  ?state a st:State;
-          log:includes { ?sensor vocab:madeObservation ?obs. }.
 }
 =>
 {
@@ -23,9 +20,9 @@
           iot:description ?desc;
           vocab:madeObservation ?obs.
 
-  ?obs iot:datetime ?timestamp;
+  ?obs vocab:hasTimestamp ?timestamp;
        vocab:outputObservation ?result.
 
   ?result a dbpedia:Light;
-        iot-attribute:light ?value.
+        vocab:hasValue ?value.
 }.

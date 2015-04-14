@@ -10,10 +10,6 @@
       "@id": "vocab:hasValue",
       "@type" : "http://www.w3.org/2001/XMLSchema#double"
   },
-  "sensorUnit": {
-    "@id" : "iot:unit",
-    "@type" : "@id"
-  },
   "timestamp": {
       "@id" : "vocab:hasTimestamp",
       "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"

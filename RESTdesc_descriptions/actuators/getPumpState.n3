@@ -3,7 +3,6 @@
 @prefix st: <http://www.mystates.org/states#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix iot: <https://iotdb.org/pub/iot#>.
-@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
 
 {
   ?pump a vocab:IrrigationPump;

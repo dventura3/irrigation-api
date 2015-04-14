@@ -3,7 +3,6 @@
 @prefix st: <http://www.mystates.org/states#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix iot: <https://iotdb.org/pub/iot#>.
-@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
 
 
 vocab:MySensorTemp  a vocab:TemperatureSensor;

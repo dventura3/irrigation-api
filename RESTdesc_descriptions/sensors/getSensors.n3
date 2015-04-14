@@ -7,8 +7,7 @@
 
 
 {
-  ?sensorsList a hydra:Collection;
-          hydra:member ?oneSensor.
+  ?sensorsList a hydra:Collection.
 }
 =>
 {
@@ -16,9 +15,8 @@
             http:requestURI "/sensors/";
             http:resp [ http:body ?sensorsList ].
 
+  ?sensorsList hydra:member ?oneSensor.
+
   ?oneSensor a vocab:Sensor;
         iot:uuid ?id.
-
-  ?state a st:State;
-          log:includes { ?oneSensor vocab:madeObservation ?obs. }.
 }.
