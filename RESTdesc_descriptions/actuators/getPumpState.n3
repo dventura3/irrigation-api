@@ -7,10 +7,7 @@
 
 {
   ?pump a vocab:IrrigationPump;
-      iot:uuid ?id.
-      
-  ?state a st:State;
-      log:includes { ?pump iot-attribute:on ?value. }.
+        iot:uuid ?id.
 }
 =>
 {
@@ -21,5 +18,5 @@
   ?pump iot:uuid ?id;
         iot:name ?name;
         iot:description ?desc;
-        iot-attribute:on ?value.
+        vocab:hasSwitchingState ?value.
 }.

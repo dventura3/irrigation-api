@@ -7,8 +7,7 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 
 {
-  ?actuatorsList a hydra:Collection;
-          hydra:member ?oneActuator.
+  ?actuatorsList a hydra:Collection.
 }
 =>
 {
@@ -16,9 +15,8 @@
             http:requestURI "/actuators/";
             http:resp [ http:body ?actuatorsList ].
 
+  ?actuatorsList a hydra:Collection;
+  			hydra:member ?oneActuator.
   ?oneActuator a vocab:Actuator;
         iot:uuid ?id.
-
-  ?state a st:State;
-      log:includes { ?oneActuator iot-attribute:on ?value. }.
 }.

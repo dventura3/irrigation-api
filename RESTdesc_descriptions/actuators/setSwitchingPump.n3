@@ -3,7 +3,7 @@
 @prefix st: <http://www.mystates.org/states#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix iot: <https://iotdb.org/pub/iot#>.
-@prefix iot-attribute: <https://iotdb.org/pub/iot-attribute#>.
+@prefix xsd : <http://www.w3.org/2001/XMLSchema#>.
 
 
 {
@@ -11,27 +11,26 @@
       iot:uuid ?id.
       
   ?state a st:State;
-      log:includes { ?pump iot-attribute:on ?oldValue. }.
+      log:includes { ?pump vocab:hasSwitchingState ?oldValue. }.
 
-  ?newSwitching a iot:Purpose;
-      iot-attribute:on ?newValue.
+  ?newValue a xsd:boolean.
 }
 =>
 {
   _:request http:methodName "PUT";
             http:body ?newSwitching;
-            http:requestURI ("/actuators/" ?id);
-            http:response [http:body ?pump].
+            http:requestURI ("/actuators/" ?id "/" ?newValue);
+            http:response [http:body ?pump].                    #but I return success or failure
 
   [ a st:StateTransition;
     st:typeOperation "replacement";
-    st:oldComponent { ?pump iot-attribute:on ?oldValue. };
-    st:newComponent { ?pump iot-attribute:on ?newSwitching. };
+    st:oldComponent { ?pump vocab:hasSwitchingState ?oldValue. };
+    st:newComponent { ?pump vocab:hasSwitchingState ?newValue. };
     st:originalState ?state
   ].
 
   ?pump iot:uuid ?id;
         iot:name ?name;
         iot:description ?desc;
-        iot-attribute:on ?newSwitching.
+        vocab:hasSwitchingState ?newValue.
 }.
