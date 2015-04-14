@@ -173,6 +173,14 @@
         response["@type"] = "Pump";
       }
       callback(response);
+    },
+    setNewActuatorState : function(actuator, newState, callback){
+      //todo
+      actuator.updateState(newState);
+      if(actuator.state == newState)
+        callback({success:true});
+      else
+        callback({success:false});
     }
   };
 

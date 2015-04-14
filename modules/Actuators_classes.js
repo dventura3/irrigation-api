@@ -11,7 +11,6 @@
 		this.updateState = function(newState){
 			this.state = newState;
 			//here should be set the new state.
-			return this.state;
 		}
 	};
 

@@ -177,10 +177,18 @@ var deleteActuator = function(req, res){
 
 //change current state for the specific actuatorID
 var setNewActuatorState = function(req, res){
-  var actuatorID = req.params.actuatorID;
+  var actuatorID_required = req.params.actuatorID;
   var newState = req.params.value;
-  console.log("New STATE! ActuatorID: " + actuatorID + " -  Value: " + newState);
-  res.send({success:false});
+  var actuator_index = 0;
+  for (var i = 0; i < actuators.length; i++) {
+    if(actuators[i].ID == actuatorID_required){
+      actuator_index = i;
+      break;
+    }
+  }
+  handler.Actuator.setNewActuatorState(actuators[actuator_index], newState, function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 /**** GEOLOCATION ***/
