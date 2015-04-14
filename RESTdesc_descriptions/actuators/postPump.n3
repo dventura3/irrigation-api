@@ -11,7 +11,7 @@
   ?actuatorsList a hydra:Collection.
 
   ?state a st:State;
-      log:includes { ?actuatorsList hydra:member ?oldActuator. }.  #????
+      log:includes { ?actuatorsList hydra:member ?oldActuator. }.         # useful????
 
   ?pump a vocab:IrrigationPump;
       iot:uuid ?id;
