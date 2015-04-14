@@ -1,6 +1,5 @@
 {
   "iot": "https://iotdb.org/pub/iot#",
-  "iot-attribute": "https://iotdb.org/pub/iot-attribute#",
   "iot-unit": "https://iotdb.org/pub/iot-unit#",
   "vocab": "http://www.example.org/vocab#",
   "dbpedia": "http://dbpedia.org/resource/",

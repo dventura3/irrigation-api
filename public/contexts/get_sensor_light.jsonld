@@ -1,20 +1,25 @@
 {
-  "iot" : "https://iotdb.org/pub/iot#",
-  "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
-  "iot-unit" : "https://iotdb.org/pub/iot-unit#",
-  "vocab" : "http://www.example.org/vocab#",
-  "dbpedia" : "http://dbpedia.org/resource/",
-  "sensorID" : "iot:uuid",
-  "sensorName" : "iot:name",
-  "sensorDescription" : "iot:description",
-  "sensorData" : { 
-    "@id" : "iot-attribute:light",
-    "@type" : "iot:number"
+  "iot": "https://iotdb.org/pub/iot#",
+  "iot-unit": "https://iotdb.org/pub/iot-unit#",
+  "vocab": "http://www.example.org/vocab#",
+  "dbpedia": "http://dbpedia.org/resource/",
+  "sensorID": "iot:uuid",
+  "sensorName": "iot:name",
+  "sensorDescription": "iot:description",
+  "sensorData": {
+      "@id": "vocab:hasValue",
+      "@type" : "http://www.w3.org/2001/XMLSchema#double"
   },
-  "sensorUnit" : "iot:unit",
-  "timestamp" : "iot:datetime",
-  "LightSensor" : "vocab:LightSensor",
-  "madeObservation" : "vocab:madeObservation",
-  "observationResult" : "vocab:outputObservation",
-  "Light" : "dbpedia:Light"
+  "sensorUnit": {
+    "@id" : "iot:unit",
+    "@type" : "@id"
+  },
+  "timestamp": {
+      "@id" : "vocab:hasTimestamp",
+      "@type" : "http://www.w3.org/2001/XMLSchema#dateTime"
+  },
+  "LightSensor": "vocab:LightSensor",
+  "madeObservation": "vocab:madeObservation",
+  "observationResult": "vocab:outputObservation",
+  "Light": "dbpedia:Light"
 }
