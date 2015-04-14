@@ -135,6 +135,22 @@
   };
 
   Handler.prototype.Plant = {
+    getPlants : function(plants, callback){
+      var context_folder = rootPath + contexts.plants.get;
+      var response = {
+        "@context" : context_folder,
+        "@id" : "/plants/",
+        "@type" : "Collection",
+        "members" : []
+      }
+      for(var i = 0; i < plants.length; i++){
+        response.members.push({
+          "@id" : ("/plants/" + plants[i].ID),
+          "@type" : "Plant"
+        });
+      }
+      callback(response);
+    },
     getPlantInfo : function(plant, callback){
       var context_folder = rootPath + contexts.plant.get;
       var response = {
@@ -214,7 +230,6 @@
           }
         ]
       };
-
       callback(response);
     }
   }

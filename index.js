@@ -81,10 +81,8 @@ app.listen(port, host, function() {
             }
           }
         }
-
         var tmp = new plant_module.Plant(config.plants[i], tmpAssociatedSensors, tmpAssociatedActuators);
         plants.push(tmp);
-        console.log(JSON.stringify(tmp));
       }
 
       handler = new handler_module.Handler("http://" + host + ":" + port);
@@ -155,12 +153,10 @@ var addNewActuator = function(req, res){
 }
 
 var getActuatorState = function(req, res){
-  console.log("getActuatorState");
   res.send({success:false});
 }
 
 var updateActuatorInfo = function(req, res){
-  console.log("updateActuatorInfo");
   res.send({success:false});
 }
 
@@ -185,7 +181,9 @@ var getGeocoordinates = function(req, res){
 /**** PLANTS ***/
 
 var getPlants = function(req, res){
-  res.send({success:false});
+  handler.Plant.getPlants(plants, function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var addNewPlant = function(req, res){
