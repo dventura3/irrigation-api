@@ -2,6 +2,7 @@
 
   var jsonld = require('../node_modules/jsonld');
   var sensor_module = require('./Sensors_classes');
+  var actuator_module = require('./Actuators_classes');
 
   contexts = {
     entryPoint : "/contexts/entryPoint.jsonld",
@@ -24,7 +25,10 @@
       put : "/contexts/put_sensor_light.jsonld",
       delete : "/contexts/delete_sensor_light.jsonld"
     },
-    actuators: "/contexts/actuators.jsonld",
+    actuators: {
+      get: "/contexts/get_actuators.jsonld",
+      post : "/contexts/post_actuators.jsonld"
+    },
     pump : { 
       get: "/contexts/get_pump.jsonld",
       put: "/contexts/put_pump.jsonld",
@@ -46,6 +50,7 @@
     rootPath = path;
   };
 
+
   Handler.prototype.EntryPoint = {
     getEntryPoint : function(callback){
       var context_folder = rootPath + contexts.entryPoint;
@@ -62,6 +67,7 @@
     }
   };
 
+
   Handler.prototype.Sensor = {
     getSensors : function(sensors, callback){
       var context_folder = rootPath + contexts.sensors.get;
@@ -69,23 +75,23 @@
         "@context" : context_folder,
         "@type": "Collection",
         "@id": "/sensors/",
-        member : []
+        "members" : []
       };
       for(var i = 0; i < sensors.length; i++){
         if(sensors[i] instanceof sensor_module.TemperatureSensor){
-          response.member.push({
+          response.members.push({
             "@id" : ("/sensors/"+sensors[i].ID),
             "@type" : "TemperatureSensor"
           });
         }
         if(sensors[i] instanceof sensor_module.MoistureSensor){
-          response.member.push({
+          response.members.push({
             "@id" : ("/sensors/"+sensors[i].ID),
             "@type" : "MoistureSensor"
           });
         }
         if(sensors[i] instanceof sensor_module.LightSensor){
-          response.member.push({
+          response.members.push({
             "@id" : ("/sensors/"+sensors[i].ID),
             "@type" : "LightSensor"
           });
@@ -133,6 +139,43 @@
       callback(response);
     }
   };
+
+
+  Handler.prototype.Actuator = {
+    getActuators : function(actuators, callback){
+      var context_folder = rootPath + contexts.actuators.get;
+      var response = {
+        "@context" : context_folder,
+        "@id" : "/actuators/",
+        "@type" : "Collection",
+        "members" : []
+      };
+      for(var i = 0; i < actuators.length; i++){
+        if(actuators[i] instanceof actuator_module.Pump){
+          response.members.push({
+            "@id" : ("/actuators/"+actuators[i].ID),
+            "@type" : "Pump"
+          });
+        }
+      };
+      callback(response);
+    },
+    getActuatorState : function(actuator, callback){
+      var response = {
+        "@id" : ("/actuators/" + actuator.ID),
+        "actuatorID" : actuator.ID,
+        "actuatorName" : actuator.name,
+        "actuatorDescription" : actuator.description,
+        "actuatorState" : actuator.state
+      };
+      if(actuator instanceof actuator_module.Pump){
+        response["@context"] = rootPath + contexts.pump.get;
+        response["@type"] = "Pump";
+      }
+      callback(response);
+    }
+  };
+
 
   Handler.prototype.Plant = {
     getPlants : function(plants, callback){
@@ -233,185 +276,6 @@
       callback(response);
     }
   }
-
-
-/*
-  Handler.prototype.nquads = {
-    conversion : function(callback){
-      var doc = {
-         "@context": {
-            "foaf" : "http://xmlns.com/foaf/0.1/",
-            "name": "foaf:name",
-            "homepage": {
-              "@id": "foaf:homepage",
-              "@type": "@id"
-            },
-            "knows" : "foaf:knows"
-          },
-          "@id" : "http://www.people.org/Manu",
-          "@type" : "foaf:People",
-          "name": "Manu Sporny",
-          "homepage": "http://manu.sporny.org/",
-          "knows" : {
-            "@id" : "http://www.people.org/Markus",
-            "@type" : "foaf:People",
-            "name" : "Markus L",
-            "homepage" : "http://markus.org"
-          }
-      };
-
-      jsonld.expand(doc, function(err, expanded) {
-        jsonld.flatten(expanded, function(err, flattened) {
-          jsonld.toRDF(flattened, {format: 'application/nquads'}, function(err, nquads) {
-            // nquads is a string of nquads
-            console.log(JSON.stringify(nquads));
-            callback(nquads);
-          });
-        });
-      });
-    },
-    getPlantInfo : function(callback){
-      //http://tinyurl.com/lqrr2fo
-
-      var doc = {
-        "@context": {
-          "hydra": "http://www.w3.org/ns/hydra/core#",
-          "vocab" : "http://www.example.org/vocab#",
-          "schema" : "http://www.schema.org/",
-          "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
-          "name" : "schema:name",
-          "description" : "schema:description",
-          "associatedSensors" : "vocab:hasAssociatedSensors",
-          "associatedActuators" : "vocab:hasAssociatedActuators",
-          "idealTemperature" : "iot-attribute:temperature",
-          "idealMoisture" : "iot-attribute:moisture",
-          "idealLight" : "iot-attribute:light"
-        },
-        "@id": "http://www.graphs.org/",
-        "@graph": [
-          {
-            "@id" : "http://example.org/graphs/idealMorning",
-            "@graph": {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 30,
-              "idealMoisture": 60,
-              "idealLight" : 35,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
-            }
-          },
-          {
-            "@id" : "http://example.org/graphs/idealAfternoon",
-            "@graph": {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 25,
-              "idealMoisture": 80,
-              "idealLight" : 60,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
-            }
-          },
-          {
-            "@id" : "http://example.org/graphs/idealNight",
-            "@graph" : {
-              "@id" : "/plants/1",
-              "@type" : "vocab:Plant",
-              "name" : "rosa",
-              "description" : "Red Rose",
-              "idealTemperature": 18,
-              "idealMoisture": 30,
-              "idealLight" : 5,
-              "associatedSensors" : [
-                {
-                  "@id" : "/sensors/001/",
-                  "@type" : "vocab:TemperatureSensor"
-                },
-                {
-                  "@id" : "/sensors/002/",
-                  "@type" : "vocab:MoistureSensor"
-                },
-                {
-                  "@id" : "/sensors/003/",
-                  "@type" : "vocab:LightSensor"
-                }
-              ],
-              "associatedActuators" : [
-                {
-                  "@id" : "/actuators/001/",
-                  "@type" : "vocab:Pump"
-                }
-              ]
-            }
-          }
-        ]
-      }
-
-      jsonld.expand(doc, function(err, expanded) {
-        console.log("\n\n******************* EXPANDED *******************\n\n");
-        console.log(JSON.stringify(expanded));
-            
-        jsonld.flatten(expanded, function(err, flattened) {
-          console.log("\n\n******************* FLATTENED *******************\n\n");
-          console.log(JSON.stringify(flattened));
-
-          jsonld.toRDF(flattened, {format: 'application/nquads'}, function(err, nquads) {
-            // nquads is a string of nquads
-            console.log(JSON.stringify(nquads));
-            //callback(nquads);
-            console.log("\n\n******************* OPPOSEITE CONVERSION *******************\n\n");
-            jsonld.fromRDF(nquads, {format: 'application/nquads'}, function(err, doc) {
-                console.log(JSON.stringify(doc));
-                callback(doc);
-            });
-          });
-        });
-      });
-
-    }
-  };
-*/
 
   exports.Handler = Handler;
 

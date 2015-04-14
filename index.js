@@ -145,7 +145,9 @@ var deleteSensor = function(req, res){
 /**** ACTUATORS ***/
 
 var getActuators = function(req, res){
-  res.send({success:false});
+  handler.Actuator.getActuators(actuators, function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var addNewActuator = function(req, res){
@@ -153,6 +155,15 @@ var addNewActuator = function(req, res){
 }
 
 var getActuatorState = function(req, res){
+  var actuatorID_required = req.params.actuatorID;
+  for (var i = 0; i < actuators.length; i++) {
+    if(actuators[i].ID == actuatorID_required){
+      handler.Actuator.getActuatorState(actuators[i], function(jsonld_data){
+        res.send(jsonld_data);
+      });
+      return null;
+    }
+  }
   res.send({success:false});
 }
 

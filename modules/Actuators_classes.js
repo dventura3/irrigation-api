@@ -4,13 +4,14 @@
 
 	function Actuator(actuatorID, actuatorName, actuatorDescription, actuatorCurrentState){
 		this.ID = actuatorID;
-		this.type = actuatorName;
+		this.name = actuatorName;
 		this.description = actuatorDescription;
 		this.state = actuatorCurrentState;
 
 		this.updateState = function(newState){
 			this.state = newState;
 			//here should be set the new state.
+			return this.state;
 		}
 	};
 
