@@ -1,28 +1,38 @@
 {
-  "hydra": "http://www.w3.org/ns/hydra/core#",
-  "vocab" : "http://www.example.org/vocab#",
-  "schema" : "http://www.schema.org/",
-  "iot" : "https://iotdb.org/pub/iot#",
-  "iot-attribute" : "https://iotdb.org/pub/iot-attribute#",
-  "iot-unit" : "https://iotdb.org/pub/iot-unit#",
-  "dbpedia" : "http://dbpedia.org/resource/",
-  "name" : "schema:name",
-  "description" : "schema:description",
-  "associatedSensors" : "vocab:hasAssociatedSensors",
-  "associatedActuators" : "vocab:hasAssociatedActuators",
-  "idealTemperature" : "vocab:hasIdealTemperature",
-  "Temperature" : "dbpedia:Temperature",
-  "temperatureValue" : "iot-attribute:temperature",
-  "temperatureUnit" : "iot:unit",
-  "idealMoisture" : "vocab:hasIdealMoisture",
-  "Moisture" : "dbpedia:Moisture",
-  "moistureValue" : "iot-attribute:moisture",
-  "idealLight" : "vocab:hasIdealLight",
-  "Light" : "dbpedia:Light",
-  "lightValue" : "iot-attribute:light",
-  "Plant" : "vocab:Plant",
-  "TemperatureSensor" : "vocab:TemperatureSensor",
-  "MoistureSensor" : "vocab:MoistureSensor",
-  "LightSensor" : "vocab:LightSensor",
-  "Pump" : "vocab:Pump"
+  "vocab": "http://www.example.org/vocab#",
+  "schema": "http://www.schema.org/",
+  "iot": "https://iotdb.org/pub/iot#",
+  "iot-unit": "https://iotdb.org/pub/iot-unit#",
+  "dbpedia": "http://dbpedia.org/resource/",
+  "name": "schema:name",
+  "description": "schema:description",
+  "associatedSensors": "vocab:hasAssociatedSensors",
+  "associatedActuators": "vocab:hasAssociatedActuators",
+  "idealTemperature": "vocab:hasIdealTemperature",
+  "Temperature": "dbpedia:Temperature",
+  "temperatureValue": {
+    "@id": "vocab:hasValue",
+    "@type" : "http://www.w3.org/2001/XMLSchema#double"
+  },
+  "temperatureUnit": {
+    "@id" : "iot:unit",
+    "@type" : "@id"
+  },
+  "idealMoisture": "vocab:hasIdealMoisture",
+  "Moisture": "dbpedia:Moisture",
+  "moistureValue": {
+    "@id": "vocab:hasValue",
+    "@type" : "http://www.w3.org/2001/XMLSchema#double"
+  },
+  "idealLight": "vocab:hasIdealLight",
+  "Light": "dbpedia:Light",
+  "lightValue": {
+    "@id": "vocab:hasValue",
+    "@type" : "http://www.w3.org/2001/XMLSchema#double"
+  },
+  "Plant": "vocab:Plant",
+  "TemperatureSensor": "vocab:TemperatureSensor",
+  "MoistureSensor": "vocab:MoistureSensor",
+  "LightSensor": "vocab:LightSensor",
+  "Pump": "vocab:Pump"
 }
