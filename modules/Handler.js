@@ -103,15 +103,13 @@
       var date = new Date(); 
       var response = {
         "@id" : ("/sensors/" + sensor.ID),
-        "sensorID" : sensor.ID,
+        "sensorID" : sensor.ID.toString(),
         "sensorName" : sensor.name,
         "sensorDescription" : sensor.description,
         "madeObservation" : {
-          "@id" : "_:Obs",
           "@type" : "vocab:Observation",
           "timestamp" : date.toISOString(),
           "observationResult" : {
-            "@id" : "_:result",
             "sensorData" : sensor.read()
           }
         }
@@ -163,7 +161,7 @@
     getActuatorState : function(actuator, callback){
       var response = {
         "@id" : ("/actuators/" + actuator.ID),
-        "actuatorID" : actuator.ID,
+        "actuatorID" : actuator.ID.toString(),
         "actuatorName" : actuator.name,
         "actuatorDescription" : actuator.description,
         "actuatorState" : actuator.state
