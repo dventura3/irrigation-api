@@ -1,10 +1,10 @@
 var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
-var sensor_module = require('./modules/Sensors_classes');
-var actuator_module = require('./modules/Actuators_classes');
-var plant_module = require('./modules/Plant_class');
-var handler_module = require('./modules/Handler');
+var sensor_module = require('./lib/Sensors_classes');
+var actuator_module = require('./lib/Actuators_classes');
+var plant_module = require('./lib/Plant_class');
+var handler_module = require('./lib/Handler');
 
 var sensors = [];
 var actuators = [];
@@ -34,7 +34,7 @@ app.use(express.static(__dirname + '/public'));
 app.listen(port, host, function() {
   //configuration
   try {
-    fs.readFile('modules/fakeResources.json', function(err, data){
+    fs.readFile('lib/fakeResources.json', function(err, data){
       if (err) throw err;
 
       config = JSON.parse(data);
