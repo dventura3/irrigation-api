@@ -27,6 +27,13 @@
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
       "state" : 1
+    },
+    {
+      "type" : "Pump",
+      "actuatorID" : 2,
+      "actuatorName" : "Pump",
+      "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
+      "state" : 1
     }
   ],
   "plants" : [
@@ -114,7 +121,7 @@
         }
       },
       "associatedSensors" : [2,3],
-      "associatedActuators" : [1]
+      "associatedActuators" : [2]
     }
   ]
 }

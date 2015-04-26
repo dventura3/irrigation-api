@@ -123,6 +123,7 @@ var addNewSensor = function(req, res){
 
 var getSensorValue = function(req, res){
   var sensorID_required = req.params.sensorID;
+  console.log("Get Sensor value for sensorID: " + sensorID_required);
   for (var i = 0; i < sensors.length; i++) {
     if(sensors[i].ID == sensorID_required){
       handler.Sensor.getSensorValue(sensors[i], function(jsonld_data){
@@ -179,6 +180,7 @@ var deleteActuator = function(req, res){
 var setNewActuatorState = function(req, res){
   var actuatorID_required = req.params.actuatorID;
   var newState = req.params.value;
+  console.log("Set New state for actuatorID: " + actuatorID_required + " - newState: " + newState);
   var actuator_index = 0;
   for (var i = 0; i < actuators.length; i++) {
     if(actuators[i].ID == actuatorID_required){
@@ -211,6 +213,7 @@ var addNewPlant = function(req, res){
 
 var getPlantInfo = function(req, res){
   var plantID_required = req.params.plantID;
+  console.log("Get Plant Information for plantID: " + plantID_required);
   for (var i = 0; i < plants.length; i++) {
     if(plants[i].ID == plantID_required){
       handler.Plant.getPlantInfo(plants[i], function(jsonld_data){
