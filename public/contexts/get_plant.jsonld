@@ -4,6 +4,7 @@
   "iot": "https://iotdb.org/pub/iot#",
   "iot-unit": "https://iotdb.org/pub/iot-unit#",
   "dbpedia": "http://dbpedia.org/resource/",
+  "hydra" : "http://www.w3.org/ns/hydra/core#",
   "name": "schema:name",
   "description": "schema:description",
   "associatedSensors": "vocab:hasAssociatedSensors",
@@ -34,5 +35,8 @@
   "TemperatureSensor": "vocab:TemperatureSensor",
   "MoistureSensor": "vocab:MoistureSensor",
   "LightSensor": "vocab:LightSensor",
-  "Pump": "vocab:Pump"
+  "Pump": "vocab:Pump",
+  "SensorsPlantCollection" : "vocab:SensorsPlantCollection",
+  "ActuatorsPlantCollection" : "vocab:ActuatorsPlantCollection",
+  "members" : "hydra:member"
 }

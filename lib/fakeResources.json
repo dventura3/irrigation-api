@@ -70,7 +70,50 @@
           "lightValue" : 5
         }
       },
-      "associatedSensors" : [1,2,3],
+      "associatedSensors" : [1],
+      "associatedActuators" : [1]
+    },
+    {
+      "plantID" : 2,
+      "plantName" : "Tulips",
+      "plantDescription" : "Orange Tulips from Netherland",
+      "idealMorning" : {
+        "idealTemperature": {
+          "temperatureValue" : 15,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 75
+        },
+        "idealLight" : {
+          "lightValue" : 25
+        }
+      },
+      "idealAfternoon" : {
+        "idealTemperature": {
+          "temperatureValue" : 30,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 23
+        },
+        "idealLight" : {
+          "lightValue" : 77
+        }
+      },
+      "idealNight" : {
+        "idealTemperature": { 
+          "temperatureValue" : 10,
+          "temperatureUnit" : "iot-unit:temperature.si.celsius"
+        },
+        "idealMoisture": {
+          "moistureValue" : 20
+        },
+        "idealLight" : {
+          "lightValue" : 0
+        }
+      },
+      "associatedSensors" : [2,3],
       "associatedActuators" : [1]
     }
   ]
