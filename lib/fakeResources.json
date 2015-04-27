@@ -77,7 +77,7 @@
           "lightValue" : 5
         }
       },
-      "associatedSensors" : [1],
+      "associatedSensors" : [1, 2],
       "associatedActuators" : [1]
     },
     {
