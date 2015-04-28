@@ -22,14 +22,14 @@
   ],
   "actuators" : [
     {
-      "type" : "Pump",
+      "type" : "IrrigationPump",
       "actuatorID" : 1,
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
       "state" : 1
     },
     {
-      "type" : "Pump",
+      "type" : "IrrigationPump",
       "actuatorID" : 2,
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",

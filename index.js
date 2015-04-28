@@ -49,7 +49,7 @@ app.listen(port, host, function() {
       }
 
       for(var i = 0; i < config.actuators.length; i++){
-        if(config.actuators[i].type == "Pump")
+        if(config.actuators[i].type == "IrrigationPump")
           var tmp = new actuator_module.Pump(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
         actuators.push(tmp);
       }
