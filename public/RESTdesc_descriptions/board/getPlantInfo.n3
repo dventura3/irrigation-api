@@ -5,16 +5,16 @@
 @prefix hydra: <http://www.w3.org/ns/hydra/core#>.
 @prefix dbpedia: <http://dbpedia.org/resource/>.
 @prefix iot-unit: <https://iotdb.org/pub/iot-unit#>.
+@prefix st: <http://www.mystates.org/states#>.
 
 
 {
-  ?plant a vocab:Plant;
-         vocab:uuid ?id.
+  ?plant a vocab:Plant.
 }
 =>
 {
   _:request http:methodName "GET";
-            http:requestURI ("/plants/" ?id);
+            http:requestURI ?plant;
             http:resp [ http:body ?plant ].
 
   ?plant  schema:name ?name;
@@ -25,13 +25,18 @@
           vocab:hasIdealMoisture ?idealMoisture;
           vocab:hasIdealLight ?idealLight.
 
-  ?sensors  a hydra:SensorsCollection.
+  ?sensors  a vocab:SensorsPlantCollection;
+          hydra:member ?oneSensor.
+  ?oneSensor a vocab:Sensor.
 
-  ?actuators a hydra:ActuatorsCollection.
+  ?actuators a vocab:ActuatorsPlantCollection;
+          hydra:member ?oneActuator.
+  ?oneActuator a vocab:Actuator;
+          vocab:hasSwitchingState ?switchingState.
 
   ?idealTemperature a dbpedia:Temperature;
           vocab:hasValue ?valT;
-          iot:unit iot-unit:temperature.si.celsius.           #static unit or ?unit ???
+          iot:unit iot-unit:temperature.si.celsius.
 
   ?idealMoisture a dbpedia:Moisture;
           vocab:hasValue ?valM.
