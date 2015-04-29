@@ -1,7 +1,7 @@
 {
     "hydra": "http://www.w3.org/ns/hydra/core#",
     "vocab" : "http://www.example.org/vocab#",
-    "Collection": "hydra:Collection",
+    "Collection": "vocab:PlantsCollection",
     "members": "hydra:member",
     "Plant" : "vocab:Plant"
 }
