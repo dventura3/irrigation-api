@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "schema" : "http://schema.org",
+    "GeoCoordinates" : "schema:GeoCoordinates",
+    "latitude" : "schema:latitude",
+    "longitude" : "schema:longitude"
+  },
+  "@id" : "/geo",
+  "@type": "GeoCoordinates",
+  "latitude": "40.75",
+  "longitude": "73.98"
+}

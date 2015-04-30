@@ -125,10 +125,13 @@ var getSensorValue = function(req, res){
       handler.Sensor.getSensorValue(sensors[i], function(jsonld_data){
         res.send(jsonld_data);
       });
-      return null;
+      return 0;
     }
   }
-  res.send({success:false});
+  //If I haven't found the plant with that ID, I  have to return a status code 404
+  handler.StatusCode.notFound(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var updateSensorInfo = function(req, res){
@@ -158,10 +161,13 @@ var getActuatorState = function(req, res){
       handler.Actuator.getActuatorState(actuators[i], function(jsonld_data){
         res.send(jsonld_data);
       });
-      return null;
+      return 0;
     }
   }
-  res.send({success:false});
+  //If I haven't found the plant with that ID, I  have to return a status code 404
+  handler.StatusCode.notFound(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var updateActuatorInfo = function(req, res){
@@ -177,14 +183,16 @@ var setNewActuatorState = function(req, res){
   var actuatorID_required = req.params.actuatorID;
   var newState = req.params.value;
   console.log("Set New state for actuatorID: " + actuatorID_required + " - newState: " + newState);
-  var actuator_index = 0;
   for (var i = 0; i < actuators.length; i++) {
     if(actuators[i].ID == actuatorID_required){
-      actuator_index = i;
-      break;
+      handler.Actuator.setNewActuatorState(actuators[i], newState, function(jsonld_data){
+        res.send(jsonld_data);
+      });
+      return 0;
     }
   }
-  handler.Actuator.setNewActuatorState(actuators[actuator_index], newState, function(jsonld_data){
+  //If I haven't found the plant with that ID, I  have to return a status code 404
+  handler.StatusCode.notFound(function(jsonld_data){
     res.send(jsonld_data);
   });
 }
@@ -192,7 +200,9 @@ var setNewActuatorState = function(req, res){
 /**** GEOLOCATION ***/
 
 var getGeocoordinates = function(req, res){
-  res.send({success:false});
+  handler.Location.getCoordinates(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 /**** PLANTS ***/
@@ -215,10 +225,13 @@ var getPlantInfo = function(req, res){
       handler.Plant.getPlantInfo(plants[i], function(jsonld_data){
         res.send(jsonld_data);
       });
-      return null;
+      return 0;
     }
   }
-  res.send({success:false});
+  //If I haven't found the plant with that ID, I  have to return a status code 404
+  handler.StatusCode.notFound(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var updatePlantInfo = function(req, res){
@@ -304,4 +317,3 @@ app.put("/plants/:plantID", updatePlantInfo);
 app.delete("/plants/:plantID", deletePlant);
 
 app.get("/geo", getGeocoordinates);
-
