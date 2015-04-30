@@ -114,7 +114,9 @@ var getSensors = function(req, res){
 var addNewSensor = function(req, res){
   //TODO = COME FACCIO A SAPERE SE L'OGGETTO CHE RICEVO è CONFORME ALLE MIE "ASPETTATIVE"?
   //Non si potrebbe avere una regola che valida il formato?????
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var getSensorValue = function(req, res){
@@ -135,11 +137,15 @@ var getSensorValue = function(req, res){
 }
 
 var updateSensorInfo = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var deleteSensor = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 /**** ACTUATORS ***/
@@ -151,7 +157,9 @@ var getActuators = function(req, res){
 }
 
 var addNewActuator = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var getActuatorState = function(req, res){
@@ -171,11 +179,15 @@ var getActuatorState = function(req, res){
 }
 
 var updateActuatorInfo = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var deleteActuator = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 //change current state for the specific actuatorID
@@ -214,7 +226,9 @@ var getPlants = function(req, res){
 }
 
 var addNewPlant = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var getPlantInfo = function(req, res){
@@ -235,11 +249,15 @@ var getPlantInfo = function(req, res){
 }
 
 var updatePlantInfo = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 var deletePlant = function(req, res){
-  res.send({success:false});
+  handler.StatusCode.notImplemented(function(jsonld_data){
+    res.send(jsonld_data);
+  });
 }
 
 /**** OPTIONS ***/
@@ -252,8 +270,12 @@ var getDescriptions = function(req, res){
     fileNames = fileNames.filter(function (file) { return file.match(uriPattern); })
                          .sort(function (a,b) { return b.length - a.length; });
 
-    if(!fileNames.length)
-      return res.send(404);
+    if(!fileNames.length){
+      handler.StatusCode.notFound(function(jsonld_data){
+        res.send(jsonld_data);
+      });
+      return -1;
+    }
 
     readFiles(__dirname + "/public/RESTdesc_descriptions/board", fileNames, function (files) {
       console.log("Send RESTdesc descriptions");
