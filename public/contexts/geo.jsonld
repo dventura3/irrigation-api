@@ -1,6 +1,6 @@
 {
   "@context": {
-    "schema" : "http://schema.org",
+    "schema": "http://www.schema.org/",
     "GeoCoordinates" : "schema:GeoCoordinates",
     "latitude" : "schema:latitude",
     "longitude" : "schema:longitude"
