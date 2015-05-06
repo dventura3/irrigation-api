@@ -1,0 +1,14 @@
+@prefix schema: <http://www.schema.org/>.
+
+{
+  ?geo a schema:GeoCoordinates.
+}
+=>
+{
+  _:request http:methodName "GET";
+            http:requestURI ?geo;
+            http:resp [ http:body ?geo ].
+
+  ?geo schema:latitude ?lat;
+       schema:longitude ?lon.
+}.

@@ -1,7 +1,7 @@
 @prefix vocab: <http://www.example.org/vocab#>.
 @prefix hydra: <http://www.w3.org/ns/hydra/core#>.
 @prefix st: <http://www.mystates.org/states#>.
-
+@prefix schema: <http://www.schema.org/>.
 
 
 </plants> a vocab:PlantsCollection.
@@ -47,3 +47,5 @@
 </actuators/2> vocab:hasSwitchingState _:state.
 } a st:State.
 
+
+</geo> a schema:GeoCoordinates.
