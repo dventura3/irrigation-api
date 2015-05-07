@@ -26,14 +26,28 @@
       "actuatorID" : 1,
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
-      "state" : 1
+      "state" : 0
     },
     {
       "type" : "IrrigationPump",
       "actuatorID" : 2,
       "actuatorName" : "Pump",
       "actuatorDescription" : "This Pump is an actuator used for irrigate plants",
-      "state" : 1
+      "state" : 0
+    },
+    {
+      "type" : "PowerWindow",
+      "actuatorID" : 3,
+      "actuatorName" : "Window",
+      "actuatorDescription" : "This Window is connected to the greenhouse",
+      "state" : 0
+    },
+    {
+      "type" : "Heater",
+      "actuatorID" : 4,
+      "actuatorName" : "Heater",
+      "actuatorDescription" : "This Heater is inside the greenhouse",
+      "state" : 0
     }
   ],
   "plants" : [
@@ -121,7 +135,7 @@
         }
       },
       "associatedSensors" : [2,3],
-      "associatedActuators" : [2]
+      "associatedActuators" : [2,3,4]
     }
   ]
 }

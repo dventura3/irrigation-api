@@ -47,6 +47,10 @@ app.listen(port, host, function() {
       for(var i = 0; i < config.actuators.length; i++){
         if(config.actuators[i].type == "IrrigationPump")
           var tmp = new actuator_module.Pump(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
+        if(config.actuators[i].type == "PowerWindow")
+          var tmp = new actuator_module.PowerWindow(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
+        if(config.actuators[i].type == "Heater")
+          var tmp = new actuator_module.Heater(config.actuators[i].actuatorID, config.actuators[i].actuatorName, config.actuators[i].actuatorDescription, config.actuators[i].state);
         actuators.push(tmp);
       }
 

@@ -1,0 +1,16 @@
+{
+	"iot" : "https://iotdb.org/pub/iot#",
+	"vocab" : "http://www.example.org/vocab#",
+	"dbpedia" : "http://dbpedia.org/resource/",
+	"dogont" : "http://elite.polito.it/ontologies/dogont.owl#",
+	"actuatorID" : "iot:uuid",
+	"actuatorName" : "iot:name",
+	"actuatorDescription" : "iot:description",
+	"actuatorState" : "vocab:hasSwitchingState",
+	"hasValue" : {
+		"@id" : "vocab:hasValue",
+		"@type" : "iot:boolean"
+	},
+	"PowerWindow" : "vocab:Power_Window",
+	"OpenCloseState" : "dogont:OpenCloseState"
+}
