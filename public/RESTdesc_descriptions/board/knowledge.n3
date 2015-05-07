@@ -41,10 +41,14 @@
 
 </actuators/1> a vocab:IrrigationPump.
 </actuators/2> a vocab:IrrigationPump.
+</actuators/3> a vocab:PowerWindow.
+</actuators/4> a vocab:Heater.
 
 { 
 </actuators/1> vocab:hasSwitchingState _:state.
 </actuators/2> vocab:hasSwitchingState _:state.
+</actuators/3> vocab:hasOpenCloseState _:stateOC.
+</actuators/4> vocab:hasSwitchingState _:state.
 } a st:State.
 
 

@@ -5,10 +5,11 @@
 @prefix iot: <https://iotdb.org/pub/iot#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix bonsai: <http://lpis.csd.auth.gr/ontologies/bonsai/BOnSAI.owl#>.
+@prefix dogont: <http://elite.polito.it/ontologies/dogont.owl#>.
 
 
 {
-  ?actuator a vocab:Actuator.
+  ?actuator a vocab:IrrigationPump.
 
   ?state a st:State;
       log:includes { ?actuator vocab:hasSwitchingState ?oldValue. }.
@@ -19,13 +20,61 @@
 =>
 {
   _:request http:methodName "PUT";
-            http:requestURI ( ?actuator ?val);
+            http:requestURI (?actuator ?val);
             http:resp [http:body ?actuator].
 
   [ a st:StateTransition;
     st:typeOperation "replacement";
     st:oldComponent { ?actuator vocab:hasSwitchingState ?oldValue. };
     st:newComponent { ?actuator vocab:hasSwitchingState ?newValue. };
+    st:originalState ?state
+  ].
+}.
+
+
+{
+  ?actuator a vocab:Heater.
+
+  ?state a st:State;
+      log:includes { ?actuator vocab:hasSwitchingState ?oldValue. }.
+
+  ?newValue a bonsai:SwitchAction;
+      vocab:hasValue ?val.
+}
+=>
+{
+  _:request http:methodName "PUT";
+            http:requestURI (?actuator ?val);
+            http:resp [http:body ?actuator].
+
+  [ a st:StateTransition;
+    st:typeOperation "replacement";
+    st:oldComponent { ?actuator vocab:hasSwitchingState ?oldValue. };
+    st:newComponent { ?actuator vocab:hasSwitchingState ?newValue. };
+    st:originalState ?state
+  ].
+}.
+
+
+{
+  ?actuator a vocab:PowerWindow.
+
+  ?state a st:State;
+      log:includes { ?actuator vocab:hasOpenCloseState ?oldValue. }.
+
+  ?newValue a dogont:OpenCloseState;
+      vocab:hasValue ?val.
+}
+=>
+{
+  _:request http:methodName "PUT";
+            http:requestURI (?actuator ?val);
+            http:resp [http:body ?actuator].
+
+  [ a st:StateTransition;
+    st:typeOperation "replacement";
+    st:oldComponent { ?actuator vocab:hasOpenCloseState ?oldValue. };
+    st:newComponent { ?actuator vocab:hasOpenCloseState ?newValue. };
     st:originalState ?state
   ].
 }.

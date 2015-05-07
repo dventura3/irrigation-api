@@ -1,4 +1,5 @@
 @prefix schema: <http://www.schema.org/>.
+@prefix http: <http://www.w3.org/2011/http#>.
 
 {
   ?geo a schema:GeoCoordinates.
