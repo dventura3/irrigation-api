@@ -33,6 +33,8 @@ app.listen(port, host, function() {
     fs.readFile('lib/fakeResources.json', function(err, data){
       if (err) throw err;
 
+      rootPath = "http://" + host + ":" + port;
+
       config = JSON.parse(data);
       for(var i = 0; i < config.sensors.length; i++){
         if(config.sensors[i].type == "TemperatureSensor")
@@ -61,7 +63,7 @@ app.listen(port, host, function() {
           for (var h = 0; h < config.sensors.length; h++) {
             if(config.sensors[h].sensorID == config.plants[i].associatedSensors[x]){
               tmpAssociatedSensors.push({
-                "@id" : ("/sensors/" + config.sensors[h].sensorID),
+                "@id" : (rootPath + "/sensors/" + config.sensors[h].sensorID),
                 "@type" : config.sensors[h].type
               });
               break;
@@ -74,7 +76,7 @@ app.listen(port, host, function() {
           for(var h = 0; h <config.actuators.length; h++){
             if(config.actuators[h].actuatorID == config.plants[i].associatedActuators[x]){
               tmpAssociatedActuators.push({
-                "@id" : ("/actuators/" + config.actuators[h].actuatorID),
+                "@id" : (rootPath + "/actuators/" + config.actuators[h].actuatorID),
                 "@type" : config.actuators[h].type
               });
               break;
@@ -85,7 +87,7 @@ app.listen(port, host, function() {
         plants.push(tmp);
       }
 
-      handler = new handler_module.Handler("http://" + host + ":" + port);
+      handler = new handler_module.Handler(host, port);
 
       console.log("Server configured");
       console.log("Server listening to %s:%d", host, port);
