@@ -61,7 +61,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 60
+          "moistureValue" : 0.6
         },
         "idealLight" : {
           "lightValue" : 35
@@ -73,7 +73,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 80
+          "moistureValue" : 0.8
         },
         "idealLight" : {
           "lightValue" : 60
@@ -85,7 +85,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 30
+          "moistureValue" : 0.3
         },
         "idealLight" : {
           "lightValue" : 5
@@ -104,7 +104,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 75
+          "moistureValue" : 0.75
         },
         "idealLight" : {
           "lightValue" : 25
@@ -116,7 +116,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 23
+          "moistureValue" : 0.23
         },
         "idealLight" : {
           "lightValue" : 77
@@ -128,7 +128,7 @@
           "temperatureUnit" : "iot-unit:temperature.si.celsius"
         },
         "idealMoisture": {
-          "moistureValue" : 20
+          "moistureValue" : 0.2
         },
         "idealLight" : {
           "lightValue" : 0
