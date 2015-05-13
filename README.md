@@ -55,7 +55,8 @@ For example, if you want the RESTdesc description of the `/sensors/:sensorID` UR
 
 The response will be like this:
 
-```HTTP/1.1 200 OK
+```
+HTTP/1.1 200 OK
 X-Powered-By: Express
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: GET,PUT,POST,DELETE,OPTIONS
@@ -86,4 +87,5 @@ Connection: keep-alive
           vocab:madeObservation ?obs.
   ?obs vocab:hasTimestamp ?timestamp;
        vocab:outputObservation ?result.
-}.```
+}.
+```
