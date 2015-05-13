@@ -7,29 +7,29 @@
 <http://127.0.0.1:3300/plants> a vocab:PlantsCollection.
 
 <http://127.0.0.1:3300/plants/1> a vocab:Plant;
-			vocab:hasAssociatedSensors [
-					a vocab:SensorsPlantCollection;
-					hydra:member <http://127.0.0.1:3300/sensors/1>, <http://127.0.0.1:3300/sensors/2>
-			];
-			vocab:hasAssociatedActuators [
-					a vocab:ActuatorsPlantCollection;
-					hydra:member <http://127.0.0.1:3300/actuators/1>
-			].
+      vocab:hasAssociatedSensors [
+          a vocab:SensorsPlantCollection;
+          hydra:member <http://127.0.0.1:3300/sensors/1>, <http://127.0.0.1:3300/sensors/2>
+      ];
+      vocab:hasAssociatedActuators [
+          a vocab:ActuatorsPlantCollection;
+          hydra:member <http://127.0.0.1:3300/actuators/1>
+      ].
 
 
 <http://127.0.0.1:3300/plants/2> a vocab:Plant;
-			vocab:hasAssociatedSensors [
-					a vocab:SensorsPlantCollection;
-					hydra:member <http://127.0.0.1:3300/sensors/2>, <http://127.0.0.1:3300/sensors/3>
-			];
-			vocab:hasAssociatedActuators [
-					a vocab:ActuatorsPlantCollection;
-					hydra:member <http://127.0.0.1:3300/actuators/2>, <http://127.0.0.1:3300/actuators/3>, <http://127.0.0.1:3300/actuators/4>
-			].
+      vocab:hasAssociatedSensors [
+          a vocab:SensorsPlantCollection;
+          hydra:member <http://127.0.0.1:3300/sensors/2>, <http://127.0.0.1:3300/sensors/3>
+      ];
+      vocab:hasAssociatedActuators [
+          a vocab:ActuatorsPlantCollection;
+          hydra:member <http://127.0.0.1:3300/actuators/2>, <http://127.0.0.1:3300/actuators/3>, <http://127.0.0.1:3300/actuators/4>
+      ].
 
 
 <http://127.0.0.1:3300/sensors> a vocab:SensorsCollection;
-					hydra:member <http://127.0.0.1:3300/sensors/1>, <http://127.0.0.1:3300/sensors/2>, <http://127.0.0.1:3300/sensors/3>.
+          hydra:member <http://127.0.0.1:3300/sensors/1>, <http://127.0.0.1:3300/sensors/2>, <http://127.0.0.1:3300/sensors/3>.
 
 <http://127.0.0.1:3300/sensors/1> a vocab:TemperatureSensor.
 <http://127.0.0.1:3300/sensors/2> a vocab:MoistureSensor.
@@ -37,7 +37,7 @@
 
 
 <http://127.0.0.1:3300/actuators> a vocab:ActuatorsCollection;
-					hydra:member <http://127.0.0.1:3300/actuators/1>, <http://127.0.0.1:3300/actuators/2>, <http://127.0.0.1:3300/actuators/3>, <http://127.0.0.1:3300/actuators/4>.
+          hydra:member <http://127.0.0.1:3300/actuators/1>, <http://127.0.0.1:3300/actuators/2>, <http://127.0.0.1:3300/actuators/3>, <http://127.0.0.1:3300/actuators/4>.
 
 <http://127.0.0.1:3300/actuators/1> a vocab:IrrigationPump.
 <http://127.0.0.1:3300/actuators/2> a vocab:IrrigationPump.

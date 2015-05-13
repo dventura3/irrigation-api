@@ -1,4 +1,4 @@
-# Greenhouse and Garden API
+# Greenhouse/Garden API
 
 This repository contains the implementation of an [JSON-LD](http://json-ld.org) API for greenhouses or gardens following the RESTful principles. The server, that exposes the API and is implemented in [Node.js](https://nodejs.org), represents a board in which sensors and actuators are connected and used for real-time monitoring and status setting. Furthermore the server is able to provide [RESTdesc](http://restdesc.org) descriptions useful to represent the functionalities of the available services.
 
@@ -23,11 +23,13 @@ Types of permitted actuators:
 - PowerWindow;
 - Heater.
 
+The coordinates are statically written in the code. To change them, modify the `/lib/Location_class.js` file.
+
 
 ## Usage
 
-After having cloned the repository, you have to install the Node.js modules with `nmp install`.
-Now you can run the server through `node index.js`. The default host is `127.0.0.1` and the default port is `3300`. You can change this configuration, setting the two environmental variables `HOST` and `PORT`.
+After having cloned the repository, you have to install the Node.js modules with `npm install`.
+Now you can run the server through `node index.js`. The default host is `127.0.0.1` and the default port is `3300`. You can change this configuration, setting the two environment variables `HOST` and `PORT`.
 
 The following table summarises the RESTful services which are currently implemented. Each of them returns a JSON-LD response whose context is stored in `/public/contexts/` directory.
 
@@ -90,3 +92,13 @@ Connection: keep-alive
        vocab:outputObservation ?result.
 }.
 ```
+
+## Ontologies
+
+The following ontologies are used to represent the semantic information in JSON-LD responses and RESTdesc descriptions:
+- [vocab](https://github.com/dventura3/irrigation-api/blob/master/public/RESTdesc_descriptions/vocabularies/vocab.n3), a custom ontology for some lacking concepts;
+- [iotdb](https://iotdb.org/);
+- [dbpedia](http://wiki.dbpedia.org/);
+- [schema.org](http://schema.org/);
+- [bonsai](http://lpis.csd.auth.gr/ontologies/ontolist.html#bonsai);
+- [dogont](http://elite.polito.it/ontologies/dogont/dogont.html).
