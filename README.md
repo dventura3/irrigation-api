@@ -7,17 +7,18 @@ This repository contains the implementation of an [JSON-LD](http://json-ld.org) 
 
 Currently the board is simulated. This means there are fake sensors, actuators, plants and geolocation coodiantes.
 It's possible adding or removing sensors, actuators and plants, modifying the `/lib/fakeResources.json` file.
+
 As you can see, it is composed by three parts:
 - sensors, that contains a list of sensors;
 - actuators, that contains a list of actuators;
 - plants, that contains a list of plants.
 
-Types of permitted sensors are:
+Types of permitted sensors:
 - TemperatureSensor;
 - MoistureSensor;
 - LightSensor.
 
-Types of permitted actuators are:
+Types of permitted actuators:
 - IrrigationPump;
 - PowerWindow;
 - Heater.
